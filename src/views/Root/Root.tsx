@@ -1,9 +1,11 @@
+// React-query setup
+import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
 //styled-components setup
 import GlobalStyle from 'assets/styles/GlobalStyle';
 import styled, { ThemeProvider } from 'styled-components';
 import { defaultTheme } from '../../assets/styles/theme';
 // templates
-import MainTemplate from '../../templates/MainTemplate';
+import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 
 const StyledLogo = styled.span`
   grid-row: 1/2;
@@ -44,23 +46,27 @@ const StyledFooter = styled.footer`
   text-align: center;
 `;
 
+const queryClient = new QueryClient();
+
 const Root = () => {
   return (
     <>
-      <ThemeProvider theme={defaultTheme}>
-        <GlobalStyle />
-        <MainTemplate>
-          <StyledLogo>
-            Study <br />
-            Buddy
-          </StyledLogo>
-          <StyledSearchBar>Search bar</StyledSearchBar>
-          <StyledNewsSection>News section</StyledNewsSection>
-          <StyledNav>Navigation</StyledNav>
-          <StyledStudentsList>students list</StyledStudentsList>
-          <StyledFooter>Created by Kamil Budzik</StyledFooter>
-        </MainTemplate>
-      </ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={defaultTheme}>
+          <GlobalStyle />
+          <MainTemplate>
+            <StyledLogo>
+              Study <br />
+              Buddy
+            </StyledLogo>
+            <StyledSearchBar>Search bar</StyledSearchBar>
+            <StyledNewsSection>News section</StyledNewsSection>
+            <StyledNav>Navigation</StyledNav>
+            <StyledStudentsList>students list</StyledStudentsList>
+            <StyledFooter>Created by Kamil Budzik</StyledFooter>
+          </MainTemplate>
+        </ThemeProvider>
+      </QueryClientProvider>
     </>
   );
 };
