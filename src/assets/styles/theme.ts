@@ -8,6 +8,6 @@ export const defaultTheme: DefaultTheme = {
     m: '1rem',
   },
   colors: {
-    primary: 'white',
+    primary: '#737C8E',
   },
 };
