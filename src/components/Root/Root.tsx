@@ -24,12 +24,14 @@ const StyledNav = styled.nav`
 
 const StyledSearchBar = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
+  padding-top: ${({ theme }) => theme.spacing.m};
 `;
 
 const StyledNewsSection = styled.div`
   grid-column: 3/4;
   grid-row: 1/-1;
   border-left: 1px solid ${({ theme }) => theme.colors.primary};
+  padding-top: ${({ theme }) => theme.spacing.m};
 `;
 
 const StyledStudentsList = styled.div`
