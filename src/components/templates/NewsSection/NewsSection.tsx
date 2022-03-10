@@ -19,7 +19,7 @@ const NewsSection = () => {
   if (error) {
     return <h1>Error</h1>;
   }
-  console.log(data);
+
   return (
     <Wrapper>
       <h1>news-section</h1>

@@ -19,11 +19,11 @@ const query = gql`
 
 const graphqlClient = new GraphQLClient(ENDPOINT, {
   headers: {
-    authorization: 'Bearer c8b963ed78e9dfbd6afbe70219c87e',
+    authorization: `Bearer ${process.env.REACT_APP_DATOCMS_TOKEN}`,
   },
 });
 
-export interface Article {
+interface Article {
   title: string;
   category: string;
   introduction: string;
