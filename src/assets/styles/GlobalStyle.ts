@@ -116,7 +116,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html, body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: ${({ theme }) => theme.fontFamily.montserrat};
   }
 
 `;
