@@ -28,7 +28,7 @@ interface Article {
   category: string;
   introduction: string;
   content: string;
-  image: {
+  image?: {
     url: string;
     alt: string;
   };

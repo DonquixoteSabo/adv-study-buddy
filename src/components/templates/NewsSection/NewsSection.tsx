@@ -51,6 +51,21 @@ const ArticleCategory = styled.h3`
   margin: 0;
 `;
 
+const ArticleCol = styled.div`
+  display: grid;
+  grid-template-columns: auto 150px;
+  place-items: center;
+`;
+
+const ArticleImg = styled.div`
+  width: 100%;
+
+  img {
+    width: 100%;
+    object-fit: cover;
+  }
+`;
+
 const NewsSection = () => {
   const { isLoading, error, data } = useArticles();
 
@@ -73,8 +88,22 @@ const NewsSection = () => {
             <ArticleTitle>{article.title}</ArticleTitle>
           </header>
           <ArticleCategory>{article.category}</ArticleCategory>
-          <p>{article.introduction}</p>
-          <Button>Read more</Button>
+          {article.image?.url ? (
+            <ArticleCol>
+              <div>
+                <p>{article.introduction}</p>
+                <Button>Read more</Button>
+              </div>
+              <ArticleImg>
+                <img src={article.image.url} alt={article.image.alt} />
+              </ArticleImg>
+            </ArticleCol>
+          ) : (
+            <>
+              <p>{article.introduction}</p>
+              <Button>Read more</Button>
+            </>
+          )}
         </ArticleItem>
       ))}
     </Wrapper>
