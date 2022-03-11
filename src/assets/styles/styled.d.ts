@@ -7,8 +7,10 @@ declare module 'styled-components' {
     };
     spacing: {
       m: string;
+      l: string;
     };
     fontSize: {
+      xs: string;
       s: string;
       m: string;
       l: string;

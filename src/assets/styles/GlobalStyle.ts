@@ -117,6 +117,7 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     font-family: ${({ theme }) => theme.fontFamily.montserrat};
+    background: #F7F8FA;
   }
 
 `;

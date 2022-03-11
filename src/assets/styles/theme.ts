@@ -2,13 +2,14 @@ import { DefaultTheme } from 'styled-components';
 
 export const defaultTheme: DefaultTheme = {
   fontSize: {
+    xs: '0.75rem',
     s: '0.875rem',
     m: '1rem',
-    l: '1.125rem',
-    xl: '1.25rem',
-    xl2: '1.5rem',
-    xl3: '2rem',
-    xl4: '3rem',
+    l: '1.5rem',
+    xl: '1.75rem',
+    xl2: '2rem',
+    xl3: '3rem',
+    xl4: '4rem',
   },
   fontFamily: {
     roboto: 'Roboto, sans-serif',
@@ -27,5 +28,6 @@ export const defaultTheme: DefaultTheme = {
   },
   spacing: {
     m: '1em',
+    l: '2em',
   },
 };
