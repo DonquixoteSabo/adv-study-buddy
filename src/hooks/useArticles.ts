@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
-import { gql, GraphQLClient } from 'graphql-request';
+import axios from 'axios';
 
 const ENDPOINT = 'https://graphql.datocms.com/';
-const query = gql`
+const query = `
   {
     allArticles {
       title
@@ -17,13 +17,11 @@ const query = gql`
   }
 `;
 
-const graphqlClient = new GraphQLClient(ENDPOINT, {
-  headers: {
-    authorization: `Bearer ${process.env.REACT_APP_DATOCMS_TOKEN}`,
-  },
-});
+interface Query {
+  data: { allArticles: Article[] };
+}
 
-interface Article {
+export interface Article {
   title: string;
   category: string;
   introduction: string;
@@ -35,9 +33,18 @@ interface Article {
 }
 
 const useArticles = () => {
-  return useQuery<Article[]>('news', async () => {
-    const { allArticles } = await graphqlClient.request(query);
-    return allArticles;
+  return useQuery<Query>('news', async () => {
+    const data = await axios.post(
+      ENDPOINT,
+      { query },
+      {
+        headers: {
+          authorization: `Bearer ${process.env.REACT_APP_DATOCMS_TOKEN}`,
+        },
+      }
+    );
+
+    return data.data;
   });
 };
 
