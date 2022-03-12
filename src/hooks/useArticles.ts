@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-const ENDPOINT = 'https://graphql.datocms.com/';
-const query = `
+export const ENDPOINT = 'https://graphql.datocms.com/';
+export const query = `
   {
     allArticles {
       title

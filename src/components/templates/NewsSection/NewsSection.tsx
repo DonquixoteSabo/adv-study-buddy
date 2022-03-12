@@ -17,7 +17,12 @@ const NewsSection = () => {
   }
 
   if (isError) {
-    return <h1>Error</h1>;
+    return (
+      <h1>
+        Sorry, but we were unable to load the data for you. Please consider
+        refreshing the page
+      </h1>
+    );
   }
   const articles = data?.data.allArticles;
 
