@@ -7,6 +7,7 @@ import { defaultTheme } from '../../assets/styles/theme';
 // templates
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import NewsSection from 'components/templates/NewsSection/NewsSection';
+import StudentsSection from '../../components/templates/StudentsSection/StudentsSection';
 
 const StyledLogo = styled.span`
   grid-row: 1/2;
@@ -30,10 +31,7 @@ const StyledSearchBar = styled.div`
   padding-top: ${({ theme }) => theme.spacing.m};
 `;
 
-const StyledStudentsList = styled.div`
-  grid-column: 2/3;
-  grid-row: 2/-1;
-`;
+
 const StyledFooter = styled.footer`
   grid-column: 2/3;
   grid-row: 3/4;
@@ -56,7 +54,7 @@ const Root = () => {
             <StyledSearchBar>Search bar</StyledSearchBar>
             <NewsSection />
             <StyledNav>Navigation</StyledNav>
-            <StyledStudentsList>students list</StyledStudentsList>
+            <StudentsSection />
             <StyledFooter>Created by Kamil Budzik</StyledFooter>
           </MainTemplate>
         </ThemeProvider>
