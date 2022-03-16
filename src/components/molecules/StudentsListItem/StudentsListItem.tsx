@@ -24,7 +24,7 @@ const StudentsListItem = ({
   attendance,
 }: Props) => {
   return (
-    <Wrapper key={lastName + firstName}>
+    <Wrapper>
       <GridWrapper>
         <Grade className="grade" average={average} />
         <StyledName>

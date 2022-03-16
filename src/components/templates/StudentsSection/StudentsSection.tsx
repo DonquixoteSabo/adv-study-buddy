@@ -2,12 +2,15 @@ import React from 'react';
 
 import StudentsList from 'components/organism/StudentsList/StudentsList';
 
-import { Wrapper } from './StudentsSection.styles';
+import { Wrapper, Header } from './StudentsSection.styles';
+import { useParams } from 'react-router-dom';
 
 const StudentsSection = () => {
+  const { group } = useParams();
+
   return (
     <Wrapper>
-      <p>Students list</p>
+      <Header>Group {group?.toUpperCase()}</Header>
       <StudentsList group="A" />
     </Wrapper>
   );

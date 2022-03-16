@@ -22,7 +22,7 @@ const StudentsList = ({ group }: Props) => {
   }
 
   const students = data?.data.students;
- 
+
   return (
     <Wrapper>
       {students?.map(
@@ -32,6 +32,7 @@ const StudentsList = ({ group }: Props) => {
             firstName={firstName}
             average={average}
             attendance={attendance}
+            key={firstName + lastName}
           />
         )
       )}
