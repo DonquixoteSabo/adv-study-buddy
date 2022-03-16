@@ -3,8 +3,6 @@ import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import NewsSection from 'components/templates/NewsSection/NewsSection';
 import StudentsSection from 'components/templates/StudentsSection/StudentsSection';
 import styled from 'styled-components';
-import { useGetAllGroups } from '../../hooks/useGetAllGroups';
-import { useParams } from 'react-router-dom';
 
 const StyledLogo = styled.span`
   grid-row: 1/2;

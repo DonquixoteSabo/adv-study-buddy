@@ -4,8 +4,7 @@ import styled from 'styled-components';
 const Wrapper = styled.button`
   display: grid;
   place-items: center;
-  width: 110px;
-  height: 26px;
+  padding: 7px 25px;
   border: none;
   font-size: ${({ theme }) => theme.fontSize.xs};
   border-radius: 96.94px;
