@@ -4,7 +4,9 @@ import axios from 'axios';
 export const ENDPOINT = 'http://localhost:5000/groups/';
 
 interface Query {
-  data: { students: Student[] };
+  data: {
+    students: Student[];
+  };
 }
 
 interface Subject {
@@ -27,7 +29,7 @@ const useGetStudentsByGroup = (group: string) => {
   return useQuery<Query>(['students', group], async () => {
     const data = await axios.get(ENDPOINT + group);
 
-    return data.data.students;
+    return data;
   });
 };
 

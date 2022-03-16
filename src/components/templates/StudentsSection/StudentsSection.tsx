@@ -65,13 +65,13 @@ const StudentsSection = () => {
     return <h1>Sorry, but we couldn't load data for you</h1>;
   }
 
-  console.log(data);
+  const students = data?.data.students;
 
   return (
     <Wrapper>
       <p>Students list</p>
       <StyledList>
-        {data!.map((student: Student) => (
+        {students?.map((student: Student) => (
           <StyledItem key={student.lastName + student.firstName}>
             <StyledGrade average={student.average}>
               {student.average}
