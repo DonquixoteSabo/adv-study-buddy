@@ -21,7 +21,34 @@ const StyledItem = styled.li`
   grid-template-rows: repeat(2, 1.6rem);
 `;
 
-const StyledGrade = styled.div``;
+interface GradeProps {
+  average: number;
+}
+
+const StyledGrade = styled.div<GradeProps>`
+  grid-row: 1/-1;
+  grid-column: 1/2;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  background: ${({ theme, average }) => {
+    if (average >= 4) {
+      return theme.colors.green;
+    }
+    if (average >= 3) {
+      return theme.colors.yellow;
+    }
+    if (average > 1) {
+      return theme.colors.red;
+    }
+    return theme.colors.primary;
+  }};
+  display: grid;
+  place-items: center;
+  font-size: ${({ theme }) => theme.fontSize.s};
+  font-weight: 700;
+  color: white;
+`;
 
 const StyledName = styled.p``;
 const StyledAttendance = styled.small``;
@@ -46,7 +73,9 @@ const StudentsSection = () => {
       <StyledList>
         {data!.map((student: Student) => (
           <StyledItem key={student.lastName + student.firstName}>
-            <StyledGrade>{student.average}</StyledGrade>
+            <StyledGrade average={student.average}>
+              {student.average}
+            </StyledGrade>
             <StyledName>
               {student.lastName} {student.firstName}
             </StyledName>

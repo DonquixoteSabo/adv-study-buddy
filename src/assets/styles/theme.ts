@@ -25,6 +25,9 @@ export const defaultTheme: DefaultTheme = {
   },
   colors: {
     primary: '#737C8E',
+    red: '#CB8581',
+    yellow: '#E1D888',
+    green: '#8FCB81',
   },
   spacing: {
     m: '1em',
