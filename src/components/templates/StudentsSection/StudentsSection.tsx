@@ -13,7 +13,7 @@ const Wrapper = styled.section`
 const StyledList = styled.ul`
   background: #fff;
   list-style: none;
-  max-width: 840px;
+  max-width: 540px;
   padding: ${({ theme }) => theme.spacing.m};
   color: ${({ theme }) => theme.colors.primary};
   overflow-y: scroll;
@@ -29,11 +29,11 @@ const StyledItem = styled.li`
 `;
 
 const GridWrapper = styled.div`
-  width: 400px;
+  max-width: 400px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-rows: repeat(2, 1.6rem);
-  grid-gap: 10px;
+  grid-column-gap: 10px;
 `;
 
 interface GradeProps {
@@ -71,13 +71,13 @@ const StyledName = styled.p`
   font-size: ${({ theme }) => theme.fontSize.m};
   display: flex;
   align-items: center;
-  margin-left: 1em;
+  margin-left: 1rem;
 `;
 const StyledAttendance = styled.small`
   display: flex;
   align-items: center;
   font-size: ${({ theme }) => theme.fontSize.xs};
-  margin-left: 1em;
+  margin-left: 1rem;
 `;
 
 const StyledDeleteButton = styled.button`
