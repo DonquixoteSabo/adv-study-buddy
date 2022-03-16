@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Student, useGetStudentsByGroup } from 'hooks/useGetStudentsByGroup';
 
+import { ImCancelCircle } from 'react-icons/im';
+
 const Wrapper = styled.section`
   grid-column: 2/3;
   grid-row: 2/-1;
@@ -15,7 +17,9 @@ const StyledList = styled.ul`
   padding: ${({ theme }) => theme.spacing.m};
   color: ${({ theme }) => theme.colors.primary};
   overflow-y: scroll;
-  height: 70vh;
+  height: 75vh;
+  box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
+  border-radius: 10px;
 `;
 
 const StyledItem = styled.li`
@@ -85,7 +89,9 @@ const StyledDeleteButton = styled.button`
   border: none;
   background: #c0c7d6;
   color: white;
-  font-size: ${({ theme }) => theme.fontSize.s};
+  display: grid;
+  place-items: center;
+  cursor: pointer;
 `;
 
 const StudentsSection = () => {
@@ -118,7 +124,9 @@ const StudentsSection = () => {
               <StyledAttendance>
                 attendance: {student.attendance}%
               </StyledAttendance>
-              <StyledDeleteButton>X</StyledDeleteButton>
+              <StyledDeleteButton>
+                <ImCancelCircle />
+              </StyledDeleteButton>
             </GridWrapper>
           </StyledItem>
         ))}
