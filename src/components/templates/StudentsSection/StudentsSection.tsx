@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 
 import StudentsList from 'components/organism/StudentsList/StudentsList';
 import Button from 'components/atoms/Button/Button';
+import { GroupContext } from 'helpers/GroupContext';
 
 import { Wrapper, Header } from './StudentsSection.styles';
-import { GroupContext } from 'views/Root/Root';
-
+  
 const StudentsSection = () => {
   const { group } = useParams();
   const { openModal } = useContext(GroupContext);
