@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import NewsSection from 'components/templates/NewsSection/NewsSection';
 import StudentsSection from 'components/templates/StudentsSection/StudentsSection';
 import styled from 'styled-components';
+
+import Modal from 'react-modal';
+import { GroupContext } from '../Root/Root';
+import GroupModal from '../../components/organism/GroupModal/GroupModal';
 
 const StyledLogo = styled.span`
   grid-row: 1/2;
@@ -33,9 +37,12 @@ const StyledFooter = styled.footer`
 `;
 
 const Students = () => {
+  const { openModal, closeModal, isModalOpen } = useContext(GroupContext);
+
   return (
     <MainTemplate>
-      <StyledLogo>
+      <GroupModal isOpen={isModalOpen} closeModal={closeModal} />
+      <StyledLogo onClick={openModal}>
         Study <br />
         Buddy
       </StyledLogo>
