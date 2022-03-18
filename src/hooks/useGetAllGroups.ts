@@ -10,11 +10,7 @@ interface Query {
 }
 
 const useGetAllGroups = () => {
-  return useQuery<Query>(['allGroups'], async () => {
-    const data = await axios.get(ENDPOINT);
-    console.log(data);
-    return data;
-  });
+  return useQuery<Query>(['allGroups'], async () => await axios.get(ENDPOINT));
 };
 
 export { useGetAllGroups };

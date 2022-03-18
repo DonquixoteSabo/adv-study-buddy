@@ -26,11 +26,10 @@ export interface Student {
 }
 
 const useGetStudentsByGroup = (group: string) => {
-  return useQuery<Query>(['students', group], async () => {
-    const data = await axios.get(ENDPOINT + group);
-
-    return data;
-  });
+  return useQuery<Query>(
+    ['students', group],
+    async () => await axios.get(ENDPOINT + group)
+  );
 };
 
 export { useGetStudentsByGroup };
