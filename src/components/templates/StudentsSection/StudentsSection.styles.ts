@@ -12,11 +12,3 @@ export const Wrapper = styled.section`
     max-width: 300px;
   }
 `;
-
-export const Header = styled.header`
-  line-height: ${({ theme }) => theme.lineHeights.md};
-  color: ${({ theme }) => theme.colors.primary};
-  font-size: ${({ theme }) => theme.fontSize.xl2};
-  font-family: ${({ theme }) => theme.fontFamily.roboto};
-  font-weight: 700;
-`;

@@ -1,22 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
+import GroupDisplay from 'components/atoms/GroupDisplay/GroupDisplay';
 
 import StudentsList from 'components/organism/StudentsList/StudentsList';
-import Button from 'components/atoms/Button/Button';
-import { GroupContext } from 'helpers/GroupContext';
 
-import { Wrapper, Header } from './StudentsSection.styles';
-  
+import { Wrapper } from './StudentsSection.styles';
+
 const StudentsSection = () => {
   const { group } = useParams();
-  const { openModal } = useContext(GroupContext);
+
   return (
     <Wrapper>
       <div className="row">
-        <Header>Group {group?.toUpperCase()}</Header>
-        <div onClick={openModal}>
-          <Button>change group {'>'}</Button>
-        </div>
+        <GroupDisplay group={group!} />
       </div>
       <StudentsList group={group!} />
     </Wrapper>
