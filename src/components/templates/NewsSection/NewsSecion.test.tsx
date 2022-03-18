@@ -2,27 +2,9 @@ import React from 'react';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
 import { render, screen } from '@testing-library/react';
-import { QueryClient, QueryClientProvider } from 'react-query';
-import { ThemeProvider } from 'styled-components';
-
-import { defaultTheme } from 'assets/styles/theme';
 import { ENDPOINT, query } from 'hooks/useArticles';
 import NewsSection from './NewsSection';
-
-const AppProviders: React.FC = ({ children }) => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        retry: false,
-      },
-    },
-  });
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
-    </QueryClientProvider>
-  );
-};
+import TestAppProviders from '../../../helpers/TestAppProviders';
 
 const mock = new MockAdapter(axios);
 
@@ -37,9 +19,9 @@ describe('NewsSection', () => {
 
     mock.onPost(ENDPOINT, { query }).networkError();
     render(
-      <AppProviders>
+      <TestAppProviders>
         <NewsSection />
-      </AppProviders>
+      </TestAppProviders>
     );
     await screen.findByText(/Sorry/i);
   });
@@ -59,9 +41,9 @@ describe('NewsSection', () => {
       },
     });
     render(
-      <AppProviders>
+      <TestAppProviders>
         <NewsSection />
-      </AppProviders>
+      </TestAppProviders>
     );
     await screen.findByText(/Test title/i);
     await screen.findByText(/Read more/i);
@@ -69,9 +51,9 @@ describe('NewsSection', () => {
   it('displays loading spinner', async () => {
     mock.onPost(ENDPOINT, { query }).timeout();
     render(
-      <AppProviders>
+      <TestAppProviders>
         <NewsSection />
-      </AppProviders>
+      </TestAppProviders>
     );
     await screen.findByText(/Loading/i);
   });

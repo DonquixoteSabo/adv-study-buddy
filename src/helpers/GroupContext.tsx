@@ -11,7 +11,7 @@ export const GroupContext = createContext<IGroupContext>({
   isModalOpen: false,
 });
 
-Modal.setAppElement('#group-modal');
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#group-modal');
 
 const GroupContextProvider: React.FC = ({ children }) => {
   const [isModalOpen, setIsModalOpen] = React.useState(false);
