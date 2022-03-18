@@ -2,6 +2,8 @@ import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from '../assets/styles/theme';
+import GroupContextProvider from './GroupContext';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const TestAppProviders: React.FC = ({ children }) => {
   const queryClient = new QueryClient({
@@ -12,9 +14,13 @@ const TestAppProviders: React.FC = ({ children }) => {
     },
   });
   return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
-    </QueryClientProvider>
+    <Router>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider theme={defaultTheme}>
+          <GroupContextProvider>{children}</GroupContextProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </Router>
   );
 };
 
