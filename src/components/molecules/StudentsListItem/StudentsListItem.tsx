@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Grade from 'components/atoms/Grade/Grade';
 import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
+
+import { StudentsContext } from 'helpers/StudentsContext';
 
 import {
   Wrapper,
@@ -23,8 +25,9 @@ const StudentsListItem = ({
   average,
   attendance,
 }: Props) => {
+  const { openStudentModal } = useContext(StudentsContext);
   return (
-    <Wrapper>
+    <Wrapper onClick={openStudentModal}>
       <GridWrapper>
         <Grade className="grade" average={average} />
         <StyledName>
@@ -36,5 +39,5 @@ const StudentsListItem = ({
     </Wrapper>
   );
 };
-
+ 
 export default StudentsListItem;

@@ -11,6 +11,7 @@ import { defaultTheme } from 'assets/styles/theme';
 
 import Students from 'views/Students/Students';
 import GroupContextProvider from 'helpers/GroupContext';
+import StudentsContextProvider from 'helpers/StudentsContext';
 
 const queryClient = new QueryClient();
 
@@ -22,10 +23,12 @@ const Root = () => {
           <ThemeProvider theme={defaultTheme}>
             <GlobalStyle />
             <GroupContextProvider>
-              <Routes>
-                <Route path="/students/:group" element={<Students />} />
-                <Route path="/" element={<Navigate to={'/students/A'} />} />
-              </Routes>
+              <StudentsContextProvider>
+                <Routes>
+                  <Route path="/students/:group" element={<Students />} />
+                  <Route path="/" element={<Navigate to={'/students/A'} />} />
+                </Routes>
+              </StudentsContextProvider>
             </GroupContextProvider>
           </ThemeProvider>
         </QueryClientProvider>

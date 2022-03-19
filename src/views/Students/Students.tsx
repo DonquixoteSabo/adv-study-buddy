@@ -5,8 +5,10 @@ import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import NewsSection from 'components/templates/NewsSection/NewsSection';
 import StudentsSection from 'components/templates/StudentsSection/StudentsSection';
 import GroupModal from 'components/organism/GroupModal/GroupModal';
+import StudentModal from 'components/organism/StudentModal/StudentModal';
 
 import { GroupContext } from 'helpers/GroupContext';
+import { StudentsContext } from 'helpers/StudentsContext';
 
 const StyledLogo = styled.span`
   grid-row: 1/2;
@@ -38,10 +40,14 @@ const StyledFooter = styled.footer`
 
 const Students = () => {
   const { closeModal, isModalOpen } = useContext(GroupContext);
-
+  const { isStudentModalOpen, closeStudentModal } = useContext(StudentsContext);
   return (
     <MainTemplate>
       <GroupModal isOpen={isModalOpen} closeModal={closeModal} />
+      <StudentModal
+        isOpen={isStudentModalOpen}
+        closeModal={closeStudentModal}
+      />
       <StyledLogo>
         Study <br />
         Buddy
