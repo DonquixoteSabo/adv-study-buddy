@@ -8,9 +8,9 @@ interface Query {
     students: Student[];
   };
 }
- 
+
 export interface Student {
-  id: { $iod: string };
+  id: { $oid: string };
   firstName: string;
   lastName: string;
   attendance: number;

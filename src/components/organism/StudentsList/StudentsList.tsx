@@ -1,6 +1,7 @@
 import React from 'react';
 
 import StudentsListItem from 'components/molecules/StudentsListItem/StudentsListItem';
+
 import { Student, useGetStudentsByGroup } from 'hooks/useGetStudentsByGroup';
 
 import { Wrapper } from './StudentsList.styles';
@@ -26,13 +27,14 @@ const StudentsList = ({ group }: Props) => {
   return (
     <Wrapper>
       {students?.map(
-        ({ lastName, firstName, attendance, average }: Student) => (
+        ({ lastName, firstName, attendance, average, id }: Student) => (
           <StudentsListItem
             lastName={lastName}
             firstName={firstName}
             average={average}
             attendance={attendance}
             key={firstName + lastName}
+            id={{ $oid: id.$oid }}
           />
         )
       )}

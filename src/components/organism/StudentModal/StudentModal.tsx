@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import Modal from 'react-modal';
 
 import styled from 'styled-components';
+import { useGetStudentDetails } from 'hooks/UseGetStudentDetails';
+import { StudentsContext } from 'helpers/StudentsContext';
 
 export const StyledModal = styled(Modal)`
   width: 300px;
@@ -27,26 +29,25 @@ interface Props {
 }
 
 const StudentModal = ({ isOpen, closeModal }: Props) => {
-  // const { isLoading, error, data } = useGetAllGroups();
-
+  const { activeStudent } = useContext(StudentsContext);
+  const { isLoading, error, data } = useGetStudentDetails(activeStudent!);
+  console.log(data);
   return (
     <StyledModal
       isOpen={isOpen}
-      contentLabel="Select group"
+      contentLabel="Student details"
       onRequestClose={closeModal}
       style={{
         overlay: { backgroundColor: ' rgba(115, 124, 142, 0.4)' },
       }}
     >
-      {/*<Header>Select a group</Header>*/}
-      {/*{error ? (*/}
-      {/*  <h4>Error</h4>*/}
-      {/*) : isLoading ? (*/}
-      {/*  <h4>Loading...</h4>*/}
-      {/*) : (*/}
-      {/*  <div>SIEMAAA</div>*/}
-      {/*)}*/}
-      <h1>Student Modal</h1>
+      {error ? (
+        <h4>Error</h4>
+      ) : isLoading ? (
+        <h4>Loading...</h4>
+      ) : data ? (
+        data.data.students.map((student) => student.firstName)
+      ) : null}
     </StyledModal>
   );
 };

@@ -17,6 +17,7 @@ interface Props {
   firstName: string;
   average: number;
   attendance: number;
+  id: { $oid: string };
 }
 
 const StudentsListItem = ({
@@ -24,10 +25,18 @@ const StudentsListItem = ({
   firstName,
   average,
   attendance,
+  id,
 }: Props) => {
   const { openStudentModal } = useContext(StudentsContext);
+
+  const handleClick = () => {
+    if (openStudentModal) {
+      openStudentModal(id.$oid);
+    }
+  };
+
   return (
-    <Wrapper onClick={openStudentModal}>
+    <Wrapper onClick={handleClick}>
       <GridWrapper>
         <Grade className="grade" average={average} />
         <StyledName>
@@ -39,5 +48,5 @@ const StudentsListItem = ({
     </Wrapper>
   );
 };
- 
+
 export default StudentsListItem;
