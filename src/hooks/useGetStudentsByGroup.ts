@@ -8,12 +8,7 @@ interface Query {
     students: Student[];
   };
 }
-
-interface Subject {
-  subject: string;
-  average: number;
-}
-
+ 
 export interface Student {
   id: { $iod: string };
   firstName: string;
@@ -22,7 +17,6 @@ export interface Student {
   average: number;
   group: string;
   course: string;
-  grades: Subject[];
 }
 
 const useGetStudentsByGroup = (group: string) => {
