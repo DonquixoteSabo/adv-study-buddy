@@ -4,7 +4,7 @@ import { Student } from './useGetStudentsByGroup';
 
 export const ENDPOINT = 'http://localhost:5000/students/';
 
-interface Subject {
+export interface Subject {
   subject: string;
   average: number;
 }
