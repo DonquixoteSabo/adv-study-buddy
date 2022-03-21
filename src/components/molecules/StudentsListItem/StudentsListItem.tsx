@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import Grade from 'components/atoms/Grade/Grade';
-import DeleteButton from 'components/atoms/DeleteButton/DeleteButton';
+import StudentButton from 'components/atoms/StudentButton/StudentButton';
 
 import { StudentsContext } from 'helpers/StudentsContext';
 
@@ -11,6 +11,7 @@ import {
   StyledName,
   StyledAttendance,
 } from './StudentsListItem.styles';
+import { RiUserSearchLine } from 'react-icons/ri';
 
 interface Props {
   lastName: string;
@@ -43,7 +44,9 @@ const StudentsListItem = ({
           {lastName} {firstName}
         </StyledName>
         <StyledAttendance>attendance: {attendance}%</StyledAttendance>
-        <DeleteButton />
+        <StudentButton>
+          <RiUserSearchLine />
+        </StudentButton>
       </GridWrapper>
     </Wrapper>
   );

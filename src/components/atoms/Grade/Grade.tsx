@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 interface GradeProps {
   average: number;
+  isBig?: boolean;
 }
 
 const Wrapper = styled.div<GradeProps>`
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: ${({ isBig }) => (isBig ? '50px' : '40px')};
+  height: ${({ isBig }) => (isBig ? '50px' : '40px')};
   background: ${({ theme, average }) => {
     if (average >= 4) {
       return theme.colors.green;
@@ -23,18 +24,20 @@ const Wrapper = styled.div<GradeProps>`
     return theme.colors.primary;
   }};
   border-radius: 50%;
-  font-size: ${({ theme }) => theme.fontSize.s};
+  font-size: ${({ theme, isBig }) =>
+    isBig ? theme.fontSize.m : theme.fontSize.s};
   font-weight: 700;
   color: white;
 `;
 
 interface Props {
   average: number;
-  className: string;
+  className?: string;
+  isBig?: boolean;
 }
 
-const Grade = ({ average, className }: Props) => (
-  <Wrapper className={className} average={average}>
+const Grade = ({ average, className, isBig }: Props) => (
+  <Wrapper className={className} average={average} isBig={isBig}>
     {average}
   </Wrapper>
 );

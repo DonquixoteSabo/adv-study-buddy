@@ -1,5 +1,4 @@
 import React from 'react';
-import { ImCancelCircle } from 'react-icons/im';
 import styled from 'styled-components';
 
 const Wrapper = styled.button`
@@ -14,10 +13,8 @@ const Wrapper = styled.button`
   cursor: pointer;
 `;
 
-const DeleteButton = () => (
-  <Wrapper>
-    <ImCancelCircle />
-  </Wrapper>
+const StudentButton: React.FC = ({ children }, props) => (
+  <Wrapper {...props}>{children}</Wrapper>
 );
 
-export default DeleteButton;
+export default StudentButton;
