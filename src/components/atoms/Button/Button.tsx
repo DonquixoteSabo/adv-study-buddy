@@ -4,20 +4,19 @@ import styled from 'styled-components';
 const Wrapper = styled.button`
   display: grid;
   place-items: center;
-  width: 110px;
-  height: 26px;
+  padding: 7px 25px;
   border: none;
   font-size: ${({ theme }) => theme.fontSize.xs};
   border-radius: 96.94px;
-  color: #737c8e;
+  color: ${({ theme }) => theme.colors.primary};
   background: #eceff7;
   font-weight: 700;
   cursor: pointer;
-  opacity: 0.8;
-  transition: 0.2s ease-in-out;
+  transition: 0.4s ease-in-out;
 
   &:hover {
-    opacity: 1;
+    color: white;
+    background: ${({ theme }) => theme.colors.primaryHover};
   }
 `;
 
