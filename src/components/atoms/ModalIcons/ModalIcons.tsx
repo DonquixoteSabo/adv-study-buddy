@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-
 const ModalIcons = () => {
   const { closeStudentModal } = useContext(StudentsContext);
 
@@ -24,7 +23,11 @@ const ModalIcons = () => {
           <AiOutlineFileAdd />
         </StudentButton>
       </div>
-      <div onClick={closeStudentModal}>
+      <div
+        onClick={closeStudentModal}
+        role="button"
+        data-testid="close student modal"
+      >
         <StudentButton>
           <ImCancelCircle />
         </StudentButton>

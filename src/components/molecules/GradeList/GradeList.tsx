@@ -18,7 +18,7 @@ const GradeList = ({ course, grades }: Props) => {
       <h4>Average grades:</h4>
       <List>
         {grades.map((grade) => (
-          <li>
+          <li key={grade.subject}>
             <p>{grade.subject}</p> <Grade average={grade.average} />
           </li>
         ))}

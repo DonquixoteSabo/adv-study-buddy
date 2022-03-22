@@ -8,13 +8,6 @@ import TestAppProviders from '../../../helpers/TestAppProviders';
 
 const mock = new MockAdapter(axios);
 
-// mock.onGet(ENDPOINT + 'A').reply(() => [
-//   200,
-//   {
-//     students: [{ name: 'SIEMA' }],
-//   },
-// ]);
-
 describe('StudentsList', () => {
   afterEach(() => {
     mock.reset();
@@ -49,7 +42,7 @@ describe('StudentsList', () => {
     mock.onGet(ENDPOINT + 'A').reply(200, {
       students: [
         {
-          id: { $iod: '123' },
+          id: { $oid: '123' },
           firstName: 'John',
           lastName: 'Doe',
           attendance: 30,

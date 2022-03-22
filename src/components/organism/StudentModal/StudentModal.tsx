@@ -32,7 +32,7 @@ const StudentModal = ({ isOpen, closeModal }: Props) => {
       ) : data ? (
         data.data.students.map(
           ({ firstName, lastName, average, course, grades }) => (
-            <Wrapper>
+            <Wrapper key={firstName + lastName}>
               <StudentModalHeader
                 average={average}
                 firstName={firstName}
