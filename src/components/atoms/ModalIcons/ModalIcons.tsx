@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
 import StudentButton from '../StudentButton/StudentButton';
-import { AiOutlineFileAdd } from 'react-icons/ai';
-import { ImCancelCircle } from 'react-icons/im';
+import { AiOutlineFileAdd, AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
-import { StudentsContext } from '../../../helpers/StudentsContext';
+import { StudentsContext } from 'helpers/StudentsContext';
+import { ImCancelCircle } from 'react-icons/im';
 
-export const Wrapper = styled.div`
+const Wrapper = styled.div`
   display: flex;
 
   div {
@@ -13,26 +13,48 @@ export const Wrapper = styled.div`
   }
 `;
 
+const CloseButton = styled.button`
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  background: transparent;
+  color: inherit;
+  border: none;
+  cursor: pointer;
+  font-size: ${({ theme }) => theme.fontSize.xl2};
+  margin: 0;
+  padding: 0;
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+`;
+
 const ModalIcons = () => {
   const { closeStudentModal } = useContext(StudentsContext);
 
   return (
-    <Wrapper>
-      <div>
-        <StudentButton>
-          <AiOutlineFileAdd />
-        </StudentButton>
-      </div>
-      <div
+    <>
+      <CloseButton
         onClick={closeStudentModal}
-        role="button"
         data-testid="close student modal"
       >
-        <StudentButton>
-          <ImCancelCircle />
-        </StudentButton>
-      </div>
-    </Wrapper>
+        <AiOutlineClose />
+      </CloseButton>
+      <Wrapper>
+        <div>
+          <StudentButton>
+            <AiOutlineFileAdd />
+          </StudentButton>
+        </div>
+        <div>
+          <StudentButton>
+            <ImCancelCircle />
+          </StudentButton>
+        </div>
+      </Wrapper>
+    </>
   );
 };
 
