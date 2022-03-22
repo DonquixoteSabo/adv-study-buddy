@@ -11,6 +11,11 @@ const Wrapper = styled.button`
   display: grid;
   place-items: center;
   cursor: pointer;
+  transition: background 0.3s ease-in-out;
+
+  &:hover {
+    background: ${({ theme }) => theme.colors.primaryHover};
+  }
 `;
 
 const StudentButton: React.FC = ({ children }, props) => (
