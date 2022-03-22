@@ -8,6 +8,7 @@ export const List = styled.ul`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0.5em 0;
   }
 
   p {

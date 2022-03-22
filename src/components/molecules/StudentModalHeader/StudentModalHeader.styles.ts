@@ -5,6 +5,11 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 0 0 3em;
+
+  .modal-average {
+    min-width: 50px;
+    min-height: 50px;
+  }
 `;
 
 export const Name = styled.header`

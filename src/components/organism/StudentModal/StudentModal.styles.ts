@@ -13,6 +13,7 @@ export const StyledModal = styled(Modal)`
   left: 50%;
   transform: translate(-50%, -50%);
   color: ${({ theme }) => theme.colors.primary};
+  outline: none;
 `;
 
 export const Wrapper = styled.div`

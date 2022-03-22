@@ -9,8 +9,8 @@ interface GradeProps {
 const Wrapper = styled.div<GradeProps>`
   display: grid;
   place-items: center;
-  width: ${({ isBig }) => (isBig ? '50px' : '40px')};
-  height: ${({ isBig }) => (isBig ? '50px' : '40px')};
+  width: 40px;
+  height: 40px;
   background: ${({ theme, average }) => {
     if (average >= 4) {
       return theme.colors.green;
@@ -33,11 +33,10 @@ const Wrapper = styled.div<GradeProps>`
 interface Props {
   average: number;
   className?: string;
-  isBig?: boolean;
 }
 
-const Grade = ({ average, className, isBig }: Props) => (
-  <Wrapper className={className} average={average} isBig={isBig}>
+const Grade = ({ average, className }: Props) => (
+  <Wrapper className={className} average={average}>
     {average}
   </Wrapper>
 );
