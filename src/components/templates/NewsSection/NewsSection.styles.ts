@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.aside`
   display: none;
   grid-column: 3/4;
   grid-row: 1/-1;
