@@ -7,10 +7,36 @@ import {
 } from '@reach/combobox';
 
 import { useFindStudents } from 'hooks/useFindStudents';
+import styled from 'styled-components';
 
 interface Props {
   results: string;
 }
+
+export const StyledComboboxPopover = styled(ComboboxPopover)`
+  width: 100%;
+  max-height: 400px;
+  overflow-y: scroll;
+`;
+
+export const StyledComboboxList = styled(ComboboxList)`
+  background: white;
+  list-style: none;
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: 700;
+  font-size: ${({ theme }) => theme.fontSize.m};
+  padding: 0;
+  margin-top: 0;
+`;
+
+export const StyledComboboxOption = styled(ComboboxOption)`
+  padding: 1em 0 1em 1em;
+  transition: 0.3s ease-in-out;
+
+  &:hover {
+    background: #eceff7;
+  }
+`;
 
 const SearchResults = ({ results }: Props) => {
   const { data } = useFindStudents(results);
@@ -18,18 +44,18 @@ const SearchResults = ({ results }: Props) => {
 
   if (students && students.length > 0) {
     return (
-      <ComboboxPopover>
-        <ComboboxList>
+      <StyledComboboxPopover>
+        <StyledComboboxList>
           {students.map((student) => (
-            <ComboboxOption
+            <StyledComboboxOption
               key={student.id.$oid}
               value={student.lastName + student.firstName}
             >
               <ComboboxOptionText />
-            </ComboboxOption>
+            </StyledComboboxOption>
           ))}
-        </ComboboxList>
-      </ComboboxPopover>
+        </StyledComboboxList>
+      </StyledComboboxPopover>
     );
   }
 

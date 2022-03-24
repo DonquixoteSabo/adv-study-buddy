@@ -15,7 +15,8 @@ export const StyledInput = styled(ComboboxInput)`
   font-weight: 700;
 
   &:focus {
-    outline: 2px solid ${({ theme }) => theme.colors.primaryHover};
+    //outline: 2px solid ${({ theme }) => theme.colors.primaryHover};
+    outline: none;
   }
 
   &::placeholder {
