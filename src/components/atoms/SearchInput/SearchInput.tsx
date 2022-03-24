@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash.debounce';
 import styled from 'styled-components';
+import { ComboboxInput } from '@reach/combobox';
 
-export const StyledInput = styled.input`
+export const StyledInput = styled(ComboboxInput)`
   width: 100%;
   max-width: 450px;
   box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
@@ -34,7 +35,7 @@ const SearchInput = ({ dispatchSearch }: Props) => {
     () =>
       debounce((val) => {
         dispatchSearch(val);
-      }, 400),
+      }, 300),
     [dispatchSearch]
   );
 

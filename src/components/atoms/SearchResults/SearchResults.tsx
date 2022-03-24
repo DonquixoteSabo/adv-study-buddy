@@ -1,4 +1,10 @@
 import React from 'react';
+import {
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+  ComboboxOptionText,
+} from '@reach/combobox';
 
 import { useFindStudents } from 'hooks/useFindStudents';
 
@@ -9,15 +15,21 @@ interface Props {
 const SearchResults = ({ results }: Props) => {
   const { data } = useFindStudents(results);
   const students = data?.data.students;
-  console.log(students);
 
   if (students && students.length > 0) {
     return (
-      <div>
-        {students.map((student) => (
-          <li key={student.id.$oid}>{student.firstName}</li>
-        ))}
-      </div>
+      <ComboboxPopover>
+        <ComboboxList>
+          {students.map((student) => (
+            <ComboboxOption
+              key={student.id.$oid}
+              value={student.lastName + student.firstName}
+            >
+              <ComboboxOptionText />
+            </ComboboxOption>
+          ))}
+        </ComboboxList>
+      </ComboboxPopover>
     );
   }
 
