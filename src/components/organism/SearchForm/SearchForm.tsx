@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
 
 import SearchInput from 'components/atoms/SearchInput/SearchInput';
-import SearchResults from 'components/atoms/SearchResults/SearchResults';
-import { Combobox } from '@reach/combobox';
+import SearchResults from 'components/molecules/SearchResults/SearchResults';
 
-export const Wrapper = styled(Combobox)`
-  width: 100%;
-  margin-left: ${({ theme }) => theme.spacing.l};
-  font-family: inherit;
-`;
+import { Wrapper } from './SearchForm.styles';
 
 const SearchForm = () => {
   const [searchValue, setSearchValue] = useState('');

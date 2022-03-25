@@ -9,7 +9,7 @@ import StudentModal from 'components/organism/StudentModal/StudentModal';
 
 import { GroupContext } from 'helpers/GroupContext';
 import { StudentsContext } from 'helpers/StudentsContext';
-import SearchBar from 'components/organism/SearchBar/SearchBar';
+import SearchBar from 'components/templates/SearchBar/SearchBar';
 import Logo from 'components/atoms/Logo/Logo';
 
 const StyledNav = styled.nav`
