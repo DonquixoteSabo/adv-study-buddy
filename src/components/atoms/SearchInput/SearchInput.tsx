@@ -48,6 +48,7 @@ const SearchInput = ({ dispatchSearch }: Props) => {
       onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
         setValue(e.target.value)
       }
+      selectOnClick
     />
   );
 };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   ComboboxPopover,
   ComboboxList,
@@ -8,6 +8,7 @@ import {
 
 import { useFindStudents } from 'hooks/useFindStudents';
 import styled from 'styled-components';
+import { StudentsContext } from '../../../helpers/StudentsContext';
 
 interface Props {
   results: string;
@@ -32,6 +33,7 @@ export const StyledComboboxList = styled(ComboboxList)`
 export const StyledComboboxOption = styled(ComboboxOption)`
   padding: 1em 0 1em 1em;
   transition: 0.3s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     background: #eceff7;
@@ -39,7 +41,15 @@ export const StyledComboboxOption = styled(ComboboxOption)`
 `;
 
 const SearchResults = ({ results }: Props) => {
+  const { openStudentModal } = useContext(StudentsContext);
   const { data } = useFindStudents(results);
+
+  const handleModalOpen = (v: string) => {
+    if (openStudentModal) {
+      openStudentModal(v);
+    }
+  };
+
   const students = data?.data.students;
 
   if (students && students.length > 0) {
@@ -49,7 +59,8 @@ const SearchResults = ({ results }: Props) => {
           {students.map((student) => (
             <StyledComboboxOption
               key={student.id.$oid}
-              value={student.lastName + student.firstName}
+              value={`${student.lastName}  ${student.firstName}`}
+              onClick={() => handleModalOpen(student.id.$oid)}
             >
               <ComboboxOptionText />
             </StyledComboboxOption>

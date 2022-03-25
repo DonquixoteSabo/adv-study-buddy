@@ -18,7 +18,7 @@ const SearchForm = () => {
 
   return (
     <>
-      <Wrapper aria-label="Search students">
+      <Wrapper aria-label="Search students" openOnFocus>
         <SearchInput dispatchSearch={dispatchSearch} />
         <SearchResults results={searchValue} />
       </Wrapper>
