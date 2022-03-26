@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 import Grade from 'components/atoms/Grade/Grade';
-import StudentButton from 'components/atoms/StudentButton/StudentButton';
+import IconButton from 'components/atoms/IconButton/IconButton';
 
 import { StudentsContext } from 'helpers/StudentsContext';
 
@@ -44,9 +44,9 @@ const StudentsListItem = ({
           {lastName} {firstName}
         </StyledName>
         <StyledAttendance>attendance: {attendance}%</StyledAttendance>
-        <StudentButton>
+        <IconButton>
           <RiUserSearchLine />
-        </StudentButton>
+        </IconButton>
       </GridWrapper>
     </Wrapper>
   );
