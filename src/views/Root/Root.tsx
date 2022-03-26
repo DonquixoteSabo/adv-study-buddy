@@ -10,6 +10,9 @@ import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from 'assets/styles/theme';
 
 import Students from 'views/Students/Students';
+import Notes from 'views//Notes/Notes';
+import Exams from 'views/Exams/Exams';
+
 import GroupContextProvider from 'helpers/GroupContext';
 import StudentsContextProvider from 'helpers/StudentsContext';
 
@@ -26,6 +29,8 @@ const Root = () => {
               <StudentsContextProvider>
                 <Routes>
                   <Route path="/students/:group" element={<Students />} />
+                  <Route path="/notes" element={<Notes />} />
+                  <Route path="/exams" element={<Exams />} />
                   <Route path="/" element={<Navigate to={'/students/A'} />} />
                 </Routes>
               </StudentsContextProvider>

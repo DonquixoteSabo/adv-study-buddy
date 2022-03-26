@@ -4,7 +4,7 @@ export const Wrapper = styled.aside`
   display: none;
   grid-column: 3/4;
   grid-row: 1/-1;
-  border-left: 1px solid ${({ theme }) => theme.colors.primary};
+  border-left: 1px solid ${({ theme }) => theme.colors.gray};
   padding: ${({ theme }) => theme.spacing.l};
   overflow-y: auto;
   height: 100vh;
