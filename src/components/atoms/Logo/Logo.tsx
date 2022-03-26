@@ -8,7 +8,7 @@ const Wrapper = styled.span`
   color: white;
   display: grid;
   place-items: flex-end;
-  border-right: 1px solid ${({ theme }) => theme.colors.primary};
+  border-right: 1px solid ${({ theme }) => theme.colors.gray};
   padding-top: ${({ theme }) => theme.spacing.m};
 }
 `;
