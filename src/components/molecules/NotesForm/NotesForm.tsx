@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 export const Wrapper = styled.form`
   //width: 50%;
@@ -9,7 +10,7 @@ export const Wrapper = styled.form`
   align-items: center;
   color: ${({ theme }) => theme.colors.primary};
   font-family: ${({ theme }) => theme.fontFamily.roboto};
-  box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
+  box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.2);
   border-radius: 10px;
   padding: ${({ theme }) => theme.spacing.l};
 
@@ -21,7 +22,7 @@ export const Wrapper = styled.form`
 export const StyledLabel = styled.label`
   font-weight: 700;
   font-size: ${({ theme }) => theme.fontSize.s};
-  margin: ${({ theme }) => theme.spacing.m} 0 ${({ theme }) => theme.spacing.l};
+  margin: ${({ theme }) => theme.spacing.m} 0;
 `;
 export const StyledNoteInput = styled.input`
   border: 1px solid #c0c7d6;
@@ -59,15 +60,55 @@ export const StyledButton = styled.button`
   }
 `;
 
+export const Error = styled.span`
+  color: ${({ theme }) => theme.colors.red};
+  //margin-bottom: 0.3em;
+`;
+
+type Inputs = {
+  noteTitle: string;
+  noteContent: string;
+};
+
 const NotesForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => {
+    console.log(data);
+    reset();
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onSubmit={handleSubmit(onSubmit)}>
       <StyledLabel htmlFor="note-title">Title</StyledLabel> <br />
-      <StyledNoteInput type="text" id="note-title" name="note-title" />
+      {errors.noteTitle?.type === 'required' && (
+        <Error>This field is required</Error>
+      )}
+      {errors.noteTitle?.type === 'maxLength' && (
+        <Error>This field is too long</Error>
+      )}
+      <StyledNoteInput
+        type="text"
+        id="note-title"
+        {...register('noteTitle', { required: true, maxLength: 30 })}
+      />
       <br />
       <StyledLabel htmlFor="note-textarea">Content</StyledLabel>
+      {errors.noteContent?.type === 'required' && (
+        <Error>This field is required</Error>
+      )}
+      {errors.noteContent?.type === 'minLength' && (
+        <Error>This field is too short</Error>
+      )}
       <br />
-      <StyledNoteTextArea id="note-textarea" name="note-content" />
+      <StyledNoteTextArea
+        id="note-textarea"
+        {...register('noteContent', { required: true, minLength: 10 })}
+      />
       <StyledButton type="submit">Add</StyledButton>
     </Wrapper>
   );
