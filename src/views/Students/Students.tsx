@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 
-import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import NewsSection from 'components/templates/NewsSection/NewsSection';
 import StudentsSection from 'components/templates/StudentsSection/StudentsSection';
 import GroupModal from 'components/organism/GroupModal/GroupModal';
@@ -11,12 +10,8 @@ import { GroupContext } from 'helpers/GroupContext';
 import { StudentsContext } from 'helpers/StudentsContext';
 import SearchBar from 'components/templates/SearchBar/SearchBar';
 import Logo from 'components/atoms/Logo/Logo';
-
-const StyledNav = styled.nav`
-  grid-column: 1/2;
-  grid-row: 2/-1;
-  border-right: 1px solid ${({ theme }) => theme.colors.primary};
-`;
+import Navigation from 'components/templates/Navigation/Navigation';
+import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 
 const StyledFooter = styled.footer`
   grid-column: 2/3;
@@ -37,7 +32,7 @@ const Students = () => {
       <Logo />
       <SearchBar />
       <NewsSection />
-      <StyledNav>Navigation</StyledNav>
+      <Navigation />
       <StudentsSection />
       <StyledFooter>Created by Kamil Budzik</StyledFooter>
     </MainTemplate>
