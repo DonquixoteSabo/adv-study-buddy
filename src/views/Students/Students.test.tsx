@@ -1,44 +1,50 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { fireEvent, prettyDOM, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
 
 import Students from './Students';
+
 import { ENDPOINT } from 'hooks/useGetStudentsByGroup';
-import TestAppProviders from 'helpers/TestAppProviders';
 import { query, ENDPOINT as DATOCMS } from 'hooks/useArticles';
+import TestAppProviders from 'helpers/TestAppProviders';
 
 const mock = new MockAdapter(axios);
 
 describe('Students Section', () => {
   beforeEach(() => {
+    //Mock groups
     mock.onGet('http://localhost:5000/groups/getGroups').reply(200, {
       groups: ['A', 'B', 'C', 'D'],
     });
-
+    //Mock empty students
     mock.onGet('http://localhost:5000/students/null').reply(200, {
       students: [],
     });
-
+    // Mock empty searchbar
+    mock.onGet('http://localhost:5000/students/search/').reply(200, {
+      students: [],
+    });
+    //Mock articles
     mock.onPost(DATOCMS, { query }).reply(200, {
       data: {
         allArticles: [],
       },
     });
+    // Mock students list
+    mock.onGet(ENDPOINT + 'undefined').reply(200, {
+      students: [],
+    });
+    // render modal container (index.html on production)
+    Modal.setAppElement(document.createElement('div'));
   });
 
   afterEach(() => {
     mock.reset();
   });
 
-  it('renders group modal on Click and close modal', async () => {
-    Modal.setAppElement(document.createElement('div'));
-
-    mock.onGet(ENDPOINT + 'undefined').reply(200, {
-      students: [],
-    });
-
+  it('renders group modal on click and selects group', async () => {
     render(
       <TestAppProviders>
         <Students />
@@ -54,9 +60,9 @@ describe('Students Section', () => {
     fireEvent.click(screen.getByText('D'));
     expect(screen.queryByText('Select a group')).not.toBeInTheDocument();
   });
-  it('renders Student modal on Click and close Modal', async () => {
-    Modal.setAppElement(document.createElement('div'));
 
+  it('renders students modal on list click and closes modal', async () => {
+    //Mock students list
     mock.onGet(ENDPOINT + 'undefined').reply(200, {
       students: [
         {
@@ -70,7 +76,7 @@ describe('Students Section', () => {
         },
       ],
     });
-
+    // Mock student 123 details
     mock.onGet('http://localhost:5000/students/123').reply(200, {
       students: [
         {
@@ -111,5 +117,62 @@ describe('Students Section', () => {
     // Close Modal
     fireEvent.click(screen.getByTestId('close student modal'));
     expect(screen.queryByText(/Average grades:/i)).not.toBeInTheDocument();
+  });
+
+  it('opens modal after searchbar click', async () => {
+    //Mock searchbar
+    mock.onGet('http://localhost:5000/students/search/John').reply(200, {
+      students: [
+        {
+          id: { $oid: '123' },
+          firstName: 'John',
+          lastName: 'Doe1',
+        },
+        {
+          id: { $oid: '456' },
+          firstName: 'John',
+          lastName: 'Doe2',
+        },
+      ],
+    });
+    // Mock Doe2 details (Modal)
+    mock.onGet('http://localhost:5000/students/456').reply(200, {
+      students: [
+        {
+          id: { $oid: '456' },
+          firstName: 'John',
+          lastName: 'Doe2',
+          attendance: 50,
+          average: 5,
+          group: 'B',
+          course: 'Math',
+          grades: [
+            {
+              subject: 'Science',
+              average: 2,
+            },
+            {
+              subject: 'English',
+              average: 3,
+            },
+          ],
+        },
+      ],
+    });
+
+    render(
+      <TestAppProviders>
+        <Students />
+      </TestAppProviders>
+    );
+
+    fireEvent.change(screen.getByPlaceholderText(/find student/i), {
+      target: { value: 'John' },
+    });
+
+    // Open Modal
+    expect(await screen.findByText(/Doe2/i)).toBeInTheDocument();
+    fireEvent.click(screen.getByText(/Doe2/i));
+    expect(await screen.findByText(/Math/i)).toBeInTheDocument();
   });
 });
