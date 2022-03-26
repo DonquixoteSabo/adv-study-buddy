@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.primary};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.gray};
   padding: ${({ theme }) => theme.spacing.l};
   display: flex;
   align-items: center;
