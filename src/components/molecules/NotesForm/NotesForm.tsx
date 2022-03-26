@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 export const Wrapper = styled.form`
-  //width: 50%;
   width: 340px;
+  max-height: 600px;
   background: white;
   display: grid;
   align-items: center;

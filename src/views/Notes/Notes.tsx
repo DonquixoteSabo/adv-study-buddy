@@ -21,12 +21,8 @@ export const Wrapper = styled.section`
 
 export const Row = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-
-  div {
-    width: 340px;
-  }
+  max-width: 800px;
 `;
 
 const Notes = () => {
