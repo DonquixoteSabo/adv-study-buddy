@@ -7,7 +7,7 @@ import StudentModal from '../../organism/StudentModal/StudentModal';
 import { StudentsContext } from '../../../helpers/StudentsContext';
 import Logo from '../../atoms/Logo/Logo';
 
-export const Wrapper = styled.section`
+export const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 120px 1fr auto;
   grid-template-rows: 80px 1fr auto;
@@ -16,7 +16,7 @@ export const Wrapper = styled.section`
 
 const MainTemplate: React.FC = ({ children }) => {
   const { isStudentModalOpen, closeStudentModal } = useContext(StudentsContext);
-
+ 
   return (
     <Wrapper>
       <StudentModal

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import StudentButton from '../StudentButton/StudentButton';
+import IconButton from '../IconButton/IconButton';
 import { AiOutlineFileAdd, AiOutlineClose } from 'react-icons/ai';
 import styled from 'styled-components';
 import { StudentsContext } from 'helpers/StudentsContext';
@@ -44,14 +44,14 @@ const ModalIcons = () => {
       </CloseButton>
       <Wrapper>
         <div>
-          <StudentButton>
+          <IconButton>
             <AiOutlineFileAdd />
-          </StudentButton>
+          </IconButton>
         </div>
         <div>
-          <StudentButton>
+          <IconButton>
             <ImCancelCircle />
-          </StudentButton>
+          </IconButton>
         </div>
       </Wrapper>
     </>
