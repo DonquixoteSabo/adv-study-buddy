@@ -1,8 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import IconButton from '../../atoms/IconButton/IconButton';
 import { AiOutlineDelete } from 'react-icons/ai';
-import { useNotes } from '../../../hooks/useNotes';
+
+import IconButton from 'components/atoms/IconButton/IconButton';
+
+import { useNotes } from 'hooks/useNotes';
+import { useDeleteNote } from 'hooks/useDeleteNote';
 
 export const List = styled.ul`
   max-width: 300px;
@@ -28,9 +31,10 @@ export const NotesItem = styled.li`
     margin-left: 8px;
   }
 `;
- 
+
 const NotesList = () => {
   const { data, isLoading, error } = useNotes();
+  const { mutate: deleteNote } = useDeleteNote();
 
   if (error) {
     return <h4>Error...</h4>;
@@ -44,7 +48,7 @@ const NotesList = () => {
       {data?.data.allNotes.map(({ _id, title, content }) => (
         <NotesItem key={_id}>
           <div>
-            <IconButton isSmall>
+            <IconButton isSmall onClick={() => deleteNote(_id)}>
               <AiOutlineDelete />
             </IconButton>
             <header>{title}</header>

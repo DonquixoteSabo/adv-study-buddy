@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import { useAddNote } from 'hooks/useAddNote';
+
 export const Wrapper = styled.form`
   width: 340px;
   max-height: 600px;
@@ -66,8 +68,8 @@ export const Error = styled.span`
 `;
 
 type Inputs = {
-  noteTitle: string;
-  noteContent: string;
+  title: string;
+  content: string;
 };
 
 const NotesForm = () => {
@@ -77,37 +79,38 @@ const NotesForm = () => {
     formState: { errors },
     reset,
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+  const { mutate: addNote } = useAddNote();
+
+  const onSubmit: SubmitHandler<Inputs> = ({ title, content }) => {
+    addNote({ title, content });
     reset();
   };
-
   return (
     <Wrapper onSubmit={handleSubmit(onSubmit)}>
-      <StyledLabel htmlFor="note-title">Title</StyledLabel> <br />
-      {errors.noteTitle?.type === 'required' && (
+      <StyledLabel htmlFor="title">Title</StyledLabel> <br />
+      {errors.title?.type === 'required' && (
         <Error>This field is required</Error>
       )}
-      {errors.noteTitle?.type === 'maxLength' && (
+      {errors.title?.type === 'maxLength' && (
         <Error>This field is too long</Error>
       )}
       <StyledNoteInput
         type="text"
-        id="note-title"
-        {...register('noteTitle', { required: true, maxLength: 30 })}
+        id="title"
+        {...register('title', { required: true, maxLength: 30 })}
       />
       <br />
       <StyledLabel htmlFor="note-textarea">Content</StyledLabel>
-      {errors.noteContent?.type === 'required' && (
+      {errors.content?.type === 'required' && (
         <Error>This field is required</Error>
       )}
-      {errors.noteContent?.type === 'minLength' && (
+      {errors.content?.type === 'minLength' && (
         <Error>This field is too short</Error>
       )}
       <br />
       <StyledNoteTextArea
         id="note-textarea"
-        {...register('noteContent', { required: true, minLength: 10 })}
+        {...register('content', { required: true, minLength: 10 })}
       />
       <StyledButton type="submit">Add</StyledButton>
     </Wrapper>

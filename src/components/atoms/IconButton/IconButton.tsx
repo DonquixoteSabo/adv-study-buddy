@@ -12,8 +12,9 @@ const Wrapper = styled.button<IProps>`
   border: none;
   background: #c0c7d6;
   color: white;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   transition: background 0.3s ease-in-out;
 
@@ -25,10 +26,13 @@ const Wrapper = styled.button<IProps>`
 interface Props {
   isSmall?: boolean;
   children: any;
+  onClick?: () => void;
 }
 
-const IconButton = ({ children, isSmall }: Props) => (
-  <Wrapper isSmall={isSmall || false}>{children}</Wrapper>
+const IconButton = ({ children, isSmall, onClick }: Props) => (
+  <Wrapper isSmall={isSmall || false} onClick={onClick}>
+    {children}
+  </Wrapper>
 );
 
 export default IconButton;
