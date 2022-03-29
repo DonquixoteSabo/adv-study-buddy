@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import IconButton from '../../atoms/IconButton/IconButton';
 import { AiOutlineDelete } from 'react-icons/ai';
+import { useNotes } from '../../../hooks/useNotes';
 
 export const List = styled.ul`
   max-width: 300px;
@@ -27,39 +28,21 @@ export const NotesItem = styled.li`
     margin-left: 8px;
   }
 `;
-
-interface Note {
-  id: string;
-  title: string;
-  content: string;
-}
-
-const notes: Note[] = [
-  {
-    id: '1',
-    title: 'My personal note',
-    content:
-      'Amet, diam, viverra nec pretium in nunc a. Pellentesque venenatis fames molestie non. Nulla neque, a a id elementum pretium aliquam.',
-  },
-  {
-    id: '2',
-    title: 'My personal note',
-    content:
-      'Amet, diam, viverra nec pretium in nunc a. Pellentesque venenatis fames molestie non. Nulla neque, a a id elementum pretium aliquam.',
-  },
-  {
-    id: '3',
-    title: 'My personal note',
-    content:
-      'Amet, diam, viverra nec pretium in nunc a. Pellentesque venenatis fames molestie non. Nulla neque, a a id elementum pretium aliquam.',
-  },
-];
-
+ 
 const NotesList = () => {
+  const { data, isLoading, error } = useNotes();
+
+  if (error) {
+    return <h4>Error...</h4>;
+  }
+  if (isLoading) {
+    return <h4>Loading...</h4>;
+  }
+
   return (
     <List>
-      {notes.map(({ id, title, content }) => (
-        <NotesItem key={id}>
+      {data?.data.allNotes.map(({ _id, title, content }) => (
+        <NotesItem key={_id}>
           <div>
             <IconButton isSmall>
               <AiOutlineDelete />
