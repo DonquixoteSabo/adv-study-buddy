@@ -6,5 +6,5 @@ export const List = styled.ul`
   margin: 0 1em 3em;
   list-style: none;
   max-height: 600px;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
