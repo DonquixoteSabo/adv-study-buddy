@@ -6,7 +6,7 @@ import IconButton from 'components/atoms/IconButton/IconButton';
 import { useDeleteNote } from 'hooks/useDeleteNote';
 
 import { Wrapper } from './NotesListItem.styles';
- 
+
 interface Props {
   _id: string;
   title: string;
