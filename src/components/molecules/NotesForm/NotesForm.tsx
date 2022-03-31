@@ -1,16 +1,13 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
+import { StyledInput } from 'components/atoms/StyledInput/StyledInput';
+import { StyledTextArea } from 'components/atoms/StyledTextArea/StyledTextArea';
+import FormButton from 'components/atoms/FormButton/FormButton';
+
 import { useAddNote } from 'hooks/useAddNote';
 
-import {
-  Wrapper,
-  StyledLabel,
-  Error,
-  StyledNoteInput,
-  StyledButton,
-  StyledNoteTextArea,
-} from './NotesForm.styles';
+import { Wrapper, StyledLabel, Error } from './NotesForm.styles';
 
 type Inputs = {
   title: string;
@@ -40,7 +37,7 @@ const NotesForm = () => {
       {errors.title?.type === 'maxLength' && (
         <Error>This field is too long</Error>
       )}
-      <StyledNoteInput
+      <StyledInput
         type="text"
         id="title"
         {...register('title', { required: true, maxLength: 30 })}
@@ -55,12 +52,12 @@ const NotesForm = () => {
         <Error>This field is too short</Error>
       )}
       <br />
-      <StyledNoteTextArea
+      <StyledTextArea
         id="note-textarea"
         {...register('content', { required: true, minLength: 10 })}
       />
       {/*Submit button*/}
-      <StyledButton type="submit">Add</StyledButton>
+      <FormButton type="submit">Add</FormButton>
     </Wrapper>
   );
 };

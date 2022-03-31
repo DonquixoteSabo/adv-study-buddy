@@ -19,5 +19,5 @@ export const Row = styled.div`
   box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
   border-radius: 10px;
   padding: ${({ theme }) => theme.spacing.m};
-  margin: ${({ theme }) => theme.spacing.m} 0;
+  margin: ${({ theme }) => theme.spacing.m};
 `;

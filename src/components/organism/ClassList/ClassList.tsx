@@ -1,8 +1,9 @@
 import React from 'react';
 
 import ClassListItem from 'components/molecules/ClassListItem/ClassListItem';
+import ClassHeader from 'components/atoms/ClassHeader/ClassHeader';
 
-import { ClassHeader, List } from './ClassList.styles';
+import { List } from './ClassList.styles';
 
 export interface Class {
   _id: string;
