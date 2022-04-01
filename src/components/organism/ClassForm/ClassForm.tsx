@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import styled from 'styled-components';
 import ClassHeader from 'components/atoms/ClassHeader/ClassHeader';
@@ -12,6 +12,7 @@ type Inputs = {
   subject: string;
   date: string;
   description: string;
+  hour: number;
 };
 
 export const StyledLabel = styled.label`
@@ -32,12 +33,16 @@ export const StyledDatePicker = styled(ReactDatePicker)`
 `;
 
 const ClassForm = () => {
-  const { register, handleSubmit, reset, control } = useForm<Inputs>();
+  const { register, handleSubmit, reset } = useForm<Inputs>();
+  const [startDate, setStartDate] = useState(new Date());
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    console.log(data);
+    const subject = data.subject;
+    const hour = data.hour;
+    const description = data.description;
+    const date = Math.floor(new Date(startDate).getTime() / 1000);
+    console.log(subject, hour, description, date);
     reset();
   };
-  // @ts-ignore
   return (
     <>
       <ClassHeader>Schedule an exam</ClassHeader>
@@ -48,19 +53,27 @@ const ClassForm = () => {
           <StyledInput
             {...register('subject', { required: true, maxLength: 25 })}
           />
+          {/*Hour */}
+          <StyledLabel>Hour</StyledLabel>
+          <StyledInput
+            type="number"
+            min={0}
+            max={24}
+            placeholder="15.00"
+            style={{ width: '50%' }}
+            {...register('hour', {
+              required: true,
+              minLength: 2,
+              maxLength: 5,
+            })}
+          />
           {/*DATE*/}
           <StyledLabel>Date</StyledLabel>
           {/*<StyledInput placeholder="DD/MM-hour" {...register('date')} />*/}
-          <Controller
-            control={control}
-            name="date"
-            render={({ field }) => (
-              <StyledDatePicker
-                onChange={(date: any) => field.onChange(date)}
-                onBlur={field.onBlur}
-                selected={field.value || new Date()}
-              />
-            )}
+          <StyledDatePicker
+            onChange={(date: Date) => setStartDate(date)}
+            selected={startDate}
+            minDate={new Date()}
           />
           {/*DESCRIPTION*/}
           <StyledLabel>Description</StyledLabel>

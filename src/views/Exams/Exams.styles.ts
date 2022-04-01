@@ -8,12 +8,13 @@ export const Wrapper = styled.div`
   padding: ${({ theme }) => theme.spacing.l};
   color: ${({ theme }) => theme.colors.primary};
   flex-wrap: wrap;
+  overflow-y: scroll;
 `;
 
 export const Row = styled.div`
   width: 40%;
   min-width: 300px;
-  height: 600px;
+  height: 700px;
   overflow-y: auto;
   background: #ffffff;
   box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
