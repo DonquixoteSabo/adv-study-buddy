@@ -4,10 +4,13 @@ import { ImCancelCircle } from 'react-icons/im';
 import IconButton from 'components/atoms/IconButton/IconButton';
 
 import { Class } from 'hooks/useClasses';
+import { useDeleteClass } from 'hooks/useDeleteClass';
 
 import { Wrapper, Time } from './ClassListItem.styles';
 
 const ClassListItem = ({ _id, title, date, hour }: Class) => {
+  const { mutate: deleteNote } = useDeleteClass();
+
   return (
     <Wrapper>
       <Time>
@@ -15,7 +18,7 @@ const ClassListItem = ({ _id, title, date, hour }: Class) => {
         <p>{hour}</p>
       </Time>
       <header>{title}</header>
-      <IconButton isSmall>
+      <IconButton isSmall onClick={() => deleteNote(_id)}>
         <ImCancelCircle className="icon" />
       </IconButton>
     </Wrapper>

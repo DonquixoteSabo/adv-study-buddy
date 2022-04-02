@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import styled from 'styled-components';
 import ClassHeader from 'components/atoms/ClassHeader/ClassHeader';
 import { StyledInput } from '../../atoms/StyledInput/StyledInput';
@@ -69,7 +69,6 @@ const ClassForm = () => {
           />
           {/*DATE*/}
           <StyledLabel>Date</StyledLabel>
-          {/*<StyledInput placeholder="DD/MM-hour" {...register('date')} />*/}
           <StyledDatePicker
             onChange={(date: Date) => setStartDate(date)}
             selected={startDate}
