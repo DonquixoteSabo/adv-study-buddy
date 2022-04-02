@@ -56,7 +56,7 @@ const ClassForm = () => {
           {/*Hour */}
           <StyledLabel>Hour</StyledLabel>
           <StyledInput
-            type="number"
+            type="time"
             min={0}
             max={24}
             placeholder="15.00"
