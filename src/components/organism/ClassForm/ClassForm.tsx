@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import styled from 'styled-components';
-import ClassHeader from 'components/atoms/ClassHeader/ClassHeader';
-import { StyledInput } from '../../atoms/StyledInput/StyledInput';
-import { StyledTextArea } from '../../atoms/StyledTextArea/StyledTextArea';
-import FormButton from '../../atoms/FormButton/FormButton';
-import ReactDatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 
-import { useAddClass } from '../../../hooks/useAddClass';
+import ClassHeader from 'components/atoms/ClassHeader/ClassHeader';
+import { StyledInput } from 'components/atoms/StyledInput/StyledInput';
+import { StyledTextArea } from 'components/atoms/StyledTextArea/StyledTextArea';
+import FormButton from 'components/atoms/FormButton/FormButton';
+
+import { useAddClass } from 'hooks/useAddClass';
+
+import { Wrapper, StyledLabel, StyledDatePicker } from './ClassForm.styles';
+import 'react-datepicker/dist/react-datepicker.css';
 
 type Inputs = {
   subject: string;
@@ -17,34 +18,20 @@ type Inputs = {
   hour: number;
 };
 
-export const StyledLabel = styled.label`
-  font-weight: 700;
-  font-size: ${({ theme }) => theme.fontSize.s};
-  margin: ${({ theme }) => theme.spacing.m} 0;
-`;
-
-export const Wrapper = styled.div`
-  display: grid;
-`;
-
-export const StyledDatePicker = styled(ReactDatePicker)`
-  border: 1px solid #c0c7d6;
-  box-shadow: -2px 4px 10px rgba(115, 124, 142, 0.09);
-  border-radius: 25px;
-  padding: 0.5em;
-`;
+// TODO Validate ClassForm
 
 const ClassForm = () => {
   const { register, handleSubmit, reset } = useForm<Inputs>();
-  const [startDate, setStartDate] = useState(new Date());
   const { mutate: addClass } = useAddClass();
+  const [startDate, setStartDate] = useState(new Date());
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const title = data.subject;
-    const hour = data.hour;
-    const content = data.description;
-    const date = Math.floor(new Date(startDate).getTime() / 1000);
-    addClass({ title, hour, content, date });
+  const onSubmit: SubmitHandler<Inputs> = ({ hour, description, subject }) => {
+    addClass({
+      title: subject,
+      hour,
+      content: description,
+      date: Math.floor(new Date(startDate).getTime() / 1000), //Convert startDate to Unix timestamp
+    });
     reset();
   };
   return (
