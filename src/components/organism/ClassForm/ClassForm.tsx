@@ -8,6 +8,8 @@ import FormButton from '../../atoms/FormButton/FormButton';
 import ReactDatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
+import { useAddClass } from '../../../hooks/useAddClass';
+
 type Inputs = {
   subject: string;
   date: string;
@@ -35,12 +37,14 @@ export const StyledDatePicker = styled(ReactDatePicker)`
 const ClassForm = () => {
   const { register, handleSubmit, reset } = useForm<Inputs>();
   const [startDate, setStartDate] = useState(new Date());
+  const { mutate: addClass } = useAddClass();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    const subject = data.subject;
+    const title = data.subject;
     const hour = data.hour;
-    const description = data.description;
+    const content = data.description;
     const date = Math.floor(new Date(startDate).getTime() / 1000);
-    console.log(subject, hour, description, date);
+    addClass({ title, hour, content, date });
     reset();
   };
   return (

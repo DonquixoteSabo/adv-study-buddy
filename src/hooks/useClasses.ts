@@ -4,8 +4,8 @@ import axios from 'axios';
 export interface Class {
   _id: string;
   date: {
-    prettyDate: string;
-    unixDate: string; // it might be an number in the future
+    prettyDate?: string;
+    unixDate: string | number; // it might be an number in the future
   };
   content: string;
   hour: string;
