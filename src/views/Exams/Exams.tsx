@@ -1,23 +1,17 @@
 import React from 'react';
 
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
-import ClassList from 'components/organism/ClassList/ClassList';
-import ClassForm from 'components/organism/ClassForm/ClassForm';
+import ExamTemplate from 'components/templates/ExamTemplate/ExamTemplate';
 
-import { Wrapper, Row } from './Exams.styles';
+import ExamContextProvider from 'helpers/ExamContext';
 
 const Exams = () => {
   return (
-    <MainTemplate>
-      <Wrapper>
-        <Row>
-          <ClassList />
-        </Row>
-        <Row>
-          <ClassForm />
-        </Row>
-      </Wrapper>
-    </MainTemplate>
+    <ExamContextProvider>
+      <MainTemplate>
+        <ExamTemplate />
+      </MainTemplate>
+    </ExamContextProvider>
   );
 };
 

@@ -15,6 +15,15 @@ export const Wrapper = styled.li`
   .icon {
     font-size: 14px;
   }
+
+  .icon-wrapper {
+    display: flex;
+    overflow: hidden;
+  }
+
+  button {
+    margin-left: 10px;
+  }
 `;
 
 export const Time = styled.div`
