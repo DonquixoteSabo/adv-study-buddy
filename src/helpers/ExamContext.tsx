@@ -28,8 +28,6 @@ const ExamContextProvider: React.FC = ({ children }) => {
     setIsExamModalOpen(false);
   };
 
-  const changeActiveExam = (id: string) => {};
-
   return (
     <ExamContext.Provider
       value={{
