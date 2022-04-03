@@ -1,7 +1,10 @@
 import React from 'react';
-import Modal from 'react-modal';
+
+import ExamModalHeader from 'components/molecules/ExamModalHeader/ExamModalHeader';
 
 import { useClasses } from 'hooks/useClasses';
+
+import { StyledModal, StyledButton } from './ExamModal.styles';
 
 interface Props {
   isOpen: boolean;
@@ -26,7 +29,7 @@ const GroupModal = ({ isOpen, closeModal, activeExam }: Props) => {
   );
 
   return (
-    <Modal
+    <StyledModal
       isOpen={isOpen}
       contentLabel="Modify Exam"
       onRequestClose={closeModal}
@@ -36,14 +39,17 @@ const GroupModal = ({ isOpen, closeModal, activeExam }: Props) => {
     >
       {matchingClass ? (
         <>
-          <div>EXAM YOO</div>
-          <div>{matchingClass.title}</div>
-          <button onClick={closeModal}>close</button>
+          <ExamModalHeader {...matchingClass} />
+          <h4>Description:</h4>
+          {matchingClass.content}
+          <StyledButton onClick={closeModal} style={{ width: 100 }}>
+            close
+          </StyledButton>
         </>
       ) : (
         <h4>Something went wrong. Please close and open again this modal</h4>
       )}
-    </Modal>
+    </StyledModal>
   );
 };
 

@@ -1,18 +1,24 @@
 import React, { useContext } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
-import { RiPencilFill } from 'react-icons/ri';
 
 import IconButton from 'components/atoms/IconButton/IconButton';
 
-import { Class } from 'hooks/useClasses';
 import { useDeleteClass } from 'hooks/useDeleteClass';
+import { Class } from 'hooks/useClasses';
 import { ExamContext } from 'helpers/ExamContext';
 
-import { Wrapper, Time } from './ClassListItem.styles';
+import { Wrapper, Time } from './ExamModalHeader.styles';
 
-const ClassListItem = ({ _id, title, date, hour, content }: Class) => {
+const ExamModalHeader = ({ date, hour, title, _id }: Class) => {
   const { mutate: deleteNote } = useDeleteClass();
-  const { openExamModal } = useContext(ExamContext);
+  const { closeExamModal } = useContext(ExamContext);
+
+  const handleDeleteClick = () => {
+    if (closeExamModal) {
+      closeExamModal();
+    }
+    deleteNote(_id);
+  };
 
   return (
     <Wrapper>
@@ -22,15 +28,7 @@ const ClassListItem = ({ _id, title, date, hour, content }: Class) => {
       </Time>
       <header>{title}</header>
       <div className="icon-wrapper">
-        {content.length > 0 && openExamModal && (
-          <IconButton
-            isSmall
-            onClick={() => openExamModal && openExamModal(_id)}
-          >
-            <RiPencilFill className="icon" />
-          </IconButton>
-        )}
-        <IconButton isSmall onClick={() => deleteNote(_id)}>
+        <IconButton isSmall onClick={handleDeleteClick}>
           <ImCancelCircle className="icon" />
         </IconButton>
       </div>
@@ -38,4 +36,4 @@ const ClassListItem = ({ _id, title, date, hour, content }: Class) => {
   );
 };
 
-export default ClassListItem;
+export default ExamModalHeader;

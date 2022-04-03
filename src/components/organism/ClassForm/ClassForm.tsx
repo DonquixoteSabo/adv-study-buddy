@@ -68,7 +68,7 @@ const ClassForm = () => {
           {/*DESCRIPTION*/}
           <StyledLabel>Description</StyledLabel>
           <StyledTextArea
-            {...register('description', { max: 99 })}
+            {...register('description', { required: true, max: 99 })}
             style={{ height: 140 }}
           />
           <FormButton type="submit">Confirm</FormButton>
