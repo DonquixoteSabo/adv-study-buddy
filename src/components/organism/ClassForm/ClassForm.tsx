@@ -50,7 +50,7 @@ const ClassForm = () => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <Wrapper>
           {/*SUBJECT*/}
-          <StyledLabel>Subject</StyledLabel>
+          <StyledLabel htmlFor="subject">Subject</StyledLabel>
           {errors.subject?.type === 'maxLength' && (
             <Error>This field is too long</Error>
           )}
@@ -61,6 +61,7 @@ const ClassForm = () => {
             <Error>This field is required</Error>
           )}
           <StyledInput
+            id="subject"
             {...register('subject', {
               required: true,
               maxLength: 25,
@@ -68,11 +69,12 @@ const ClassForm = () => {
             })}
           />
           {/*Hour */}
-          <StyledLabel>Hour</StyledLabel>
+          <StyledLabel htmlFor="hour">Hour</StyledLabel>
           {errors.hour?.type === 'required' && (
             <Error>This field is required</Error>
           )}
           <StyledInput
+            id="hour"
             type="time"
             min={0}
             max={24}
@@ -85,14 +87,15 @@ const ClassForm = () => {
             })}
           />
           {/*DATE*/}
-          <StyledLabel>Date</StyledLabel>
+          <StyledLabel htmlFor="date">Date</StyledLabel>
           <StyledDatePicker
+            id="date"
             onChange={(date: Date) => setStartDate(date)}
             selected={startDate}
             minDate={new Date()}
           />
           {/*DESCRIPTION*/}
-          <StyledLabel>Description</StyledLabel>
+          <StyledLabel htmlFor="description">Description</StyledLabel>
           {errors.description?.type === 'maxLength' && (
             <Error>This field is too long</Error>
           )}
@@ -100,7 +103,8 @@ const ClassForm = () => {
             <Error>This field is required</Error>
           )}
           <StyledTextArea
-            {...register('description', { required: true, max: 99 })}
+            id="description"
+            {...register('description', { required: true, maxLength: 99 })}
             style={{ height: 140 }}
           />
           <FormButton type="submit">Confirm</FormButton>
