@@ -17,3 +17,7 @@ export const StyledDatePicker = styled(ReactDatePicker)`
   border-radius: 25px;
   padding: 0.5em;
 `;
+
+export const Error = styled.span`
+  color: ${({ theme }) => theme.colors.red};
+`;

@@ -8,7 +8,12 @@ import FormButton from 'components/atoms/FormButton/FormButton';
 
 import { useAddClass } from 'hooks/useAddClass';
 
-import { Wrapper, StyledLabel, StyledDatePicker } from './ClassForm.styles';
+import {
+  Wrapper,
+  StyledLabel,
+  StyledDatePicker,
+  Error,
+} from './ClassForm.styles';
 import 'react-datepicker/dist/react-datepicker.css';
 
 type Inputs = {
@@ -21,7 +26,12 @@ type Inputs = {
 // TODO Validate ClassForm
 
 const ClassForm = () => {
-  const { register, handleSubmit, reset } = useForm<Inputs>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Inputs>();
   const { mutate: addClass } = useAddClass();
   const [startDate, setStartDate] = useState(new Date());
 
@@ -41,11 +51,27 @@ const ClassForm = () => {
         <Wrapper>
           {/*SUBJECT*/}
           <StyledLabel>Subject</StyledLabel>
+          {errors.subject?.type === 'maxLength' && (
+            <Error>This field is too long</Error>
+          )}
+          {errors.subject?.type === 'minLength' && (
+            <Error>This field is too short</Error>
+          )}
+          {errors.subject?.type === 'required' && (
+            <Error>This field is required</Error>
+          )}
           <StyledInput
-            {...register('subject', { required: true, maxLength: 25 })}
+            {...register('subject', {
+              required: true,
+              maxLength: 25,
+              minLength: 3,
+            })}
           />
           {/*Hour */}
           <StyledLabel>Hour</StyledLabel>
+          {errors.hour?.type === 'required' && (
+            <Error>This field is required</Error>
+          )}
           <StyledInput
             type="time"
             min={0}
@@ -67,6 +93,12 @@ const ClassForm = () => {
           />
           {/*DESCRIPTION*/}
           <StyledLabel>Description</StyledLabel>
+          {errors.description?.type === 'maxLength' && (
+            <Error>This field is too long</Error>
+          )}
+          {errors.description?.type === 'required' && (
+            <Error>This field is required</Error>
+          )}
           <StyledTextArea
             {...register('description', { required: true, max: 99 })}
             style={{ height: 140 }}
