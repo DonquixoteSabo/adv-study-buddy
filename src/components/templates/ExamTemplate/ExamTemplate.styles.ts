@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   color: ${({ theme }) => theme.colors.primary};
   flex-wrap: wrap;
   max-height: 100vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 export const Row = styled.div`
