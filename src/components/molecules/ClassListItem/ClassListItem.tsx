@@ -10,7 +10,7 @@ import { ExamContext } from 'helpers/ExamContext';
 
 import { Wrapper, Time } from './ClassListItem.styles';
 
-const ClassListItem = ({ _id, title, date, hour, content }: Class) => {
+const ClassListItem = ({ _id, title, date, hour }: Class) => {
   const { mutate: deleteNote } = useDeleteClass();
   const { openExamModal } = useContext(ExamContext);
 
@@ -22,14 +22,13 @@ const ClassListItem = ({ _id, title, date, hour, content }: Class) => {
       </Time>
       <header>{title}</header>
       <div className="icon-wrapper">
-        {content.length > 0 && openExamModal && (
-          <IconButton
-            isSmall
-            onClick={() => openExamModal && openExamModal(_id)}
-          >
-            <RiPencilFill className="icon" />
-          </IconButton>
-        )}
+        <IconButton
+          isSmall
+          onClick={() => openExamModal && openExamModal(_id)}
+          data-testid={_id}
+        >
+          <RiPencilFill className="icon" />
+        </IconButton>
         <IconButton isSmall onClick={() => deleteNote(_id)}>
           <ImCancelCircle className="icon" />
         </IconButton>
