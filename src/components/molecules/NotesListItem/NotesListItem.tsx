@@ -18,7 +18,7 @@ const NotesListItem = ({ _id, title, content }: Props) => {
   return (
     <Wrapper key={_id}>
       <div>
-        <IconButton isSmall onClick={() => deleteNote(_id)}>
+        <IconButton data-cy={title} isSmall onClick={() => deleteNote(_id)}>
           <AiOutlineDelete />
         </IconButton>
         <header>{title}</header>
