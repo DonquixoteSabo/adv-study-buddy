@@ -24,7 +24,7 @@ describe('StudentsList', () => {
         <StudentsList group="A" />
       </TestAppProviders>
     );
-    expect(screen.getByText(/Loading/i)).toBeInTheDocument();
+    screen.getByText(/Loading/i);
   });
 
   it('renders error message', async () => {
@@ -35,7 +35,7 @@ describe('StudentsList', () => {
         <StudentsList group="A" />
       </TestAppProviders>
     );
-    expect(await screen.findByText(/Sorry/i)).toBeInTheDocument();
+    await screen.findByText(/Sorry/i);
   });
 
   it('renders Students', async () => {
@@ -68,7 +68,7 @@ describe('StudentsList', () => {
         <StudentsList group="A" />
       </TestAppProviders>
     );
-    expect(await screen.findByText(/Doe John/i)).toBeInTheDocument();
+    await screen.findByText(/Doe John/i);
     expect(screen.queryByText(/Academic speech/i)).not.toBeInTheDocument();
   });
 });

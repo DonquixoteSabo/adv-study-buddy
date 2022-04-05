@@ -1,8 +1,9 @@
 import React from 'react';
 import Modal from 'react-modal';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
+import userEvent from '@testing-library/user-event';
 
 import TestAppProviders from 'helpers/TestAppProviders';
 import GroupModal from './GroupModal';
@@ -27,9 +28,9 @@ describe('GroupModal', () => {
       </TestAppProviders>
     );
 
-    expect(await screen.findByText(/select a group/i)).toBeInTheDocument();
-    expect(await screen.findByText('A')).toBeInTheDocument();
-    expect(await screen.findByText('D')).toBeInTheDocument();
+    await screen.findByText(/select a group/i);
+    await screen.findByText('A');
+    await screen.findByText('D');
   });
 
   it('changes group route param', async () => {
@@ -45,8 +46,8 @@ describe('GroupModal', () => {
       </TestAppProviders>
     );
 
-    const groupLink = await screen.findByText('A')
-    fireEvent.click(groupLink);
+    const groupLink = await screen.findByText('A');
+    userEvent.click(groupLink);
     expect(groupLink).toHaveAttribute('href', '/students/A');
   });
 });

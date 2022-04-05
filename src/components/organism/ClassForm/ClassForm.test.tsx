@@ -31,7 +31,7 @@ describe('ClassForm', () => {
         <ClassForm />
       </TestAppProviders>
     );
-    fireEvent.click(screen.getByText('Confirm'));
+    userEvent.click(screen.getByText('Confirm'));
     userEvent.type(screen.getByLabelText('Description'), 'Evolution');
     expect(await screen.findAllByText(/This field is required/i)).toHaveLength(
       2
@@ -44,7 +44,7 @@ describe('ClassForm', () => {
         <ClassForm />
       </TestAppProviders>
     );
-    fireEvent.click(screen.getByText('Confirm'));
+    userEvent.click(screen.getByText('Confirm'));
     userEvent.type(screen.getByLabelText('Description'), 'Evolution');
     expect(await screen.findAllByText(/This field is required/i)).toHaveLength(
       2

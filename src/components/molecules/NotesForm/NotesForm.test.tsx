@@ -2,6 +2,7 @@ import React from 'react';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
+import userEvent from '@testing-library/user-event';
 
 import NotesForm from './NotesForm';
 
@@ -36,8 +37,8 @@ describe('Notes form', () => {
   it('clears inputs on submit', async () => {
     const { titleInput, contentInput } = setup();
 
-    fireEvent.change(titleInput, { target: { value: 'Test title' } });
-    fireEvent.change(contentInput, { target: { value: 'Test content' } });
+    userEvent.type(titleInput, 'Test title');
+    userEvent.type(contentInput, 'Test content');
 
     fireEvent.submit(screen.getByText('Add'));
 
@@ -58,8 +59,8 @@ describe('Notes form', () => {
       expect(screen.queryAllByText('This field is required')).toHaveLength(2);
     });
     // inputs have content inside
-    fireEvent.change(titleInput, { target: { value: 'Test title' } });
-    fireEvent.change(contentInput, { target: { value: 'Test content' } });
+    userEvent.type(titleInput, 'Test title');
+    userEvent.type(contentInput, 'Test content');
     await waitFor(() => {
       expect(screen.queryAllByText('This field is required')).toHaveLength(0);
     });
@@ -68,13 +69,13 @@ describe('Notes form', () => {
   it('validate text area', async () => {
     const { contentInput } = setup();
 
-    fireEvent.change(contentInput, { target: { value: 'Tes' } });
+    userEvent.type(contentInput, 'Tes');
     fireEvent.submit(screen.getByText('Add'));
     await waitFor(() => {
       expect(screen.getByText('This field is too short')).toBeInTheDocument();
     });
 
-    fireEvent.change(contentInput, { target: { value: 'Test content' } });
+    userEvent.type(contentInput, 'Test content');
     await waitFor(() => {
       expect(
         screen.queryByText('This field is too short')

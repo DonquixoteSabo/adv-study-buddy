@@ -39,7 +39,7 @@ describe('SearchResults', () => {
       </TestAppProviders>
     );
 
-    expect(await screen.findByText(/Doe1/i)).toBeInTheDocument();
-    expect(await screen.findByText(/Doe2/i)).toBeInTheDocument();
+    await screen.findByText(/Doe1/i);
+    await screen.findByText(/Doe2/i);
   });
 });

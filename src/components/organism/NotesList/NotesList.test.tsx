@@ -19,6 +19,8 @@ let allNotes = [
   { _id: '3', title: 'News', content: 'Add new subpage' },
 ];
 
+const ENDPOINT = 'http://localhost:5000/notes/';
+
 describe('NotesList', () => {
   beforeEach(() => {
     console.error = jest.fn();
@@ -29,27 +31,27 @@ describe('NotesList', () => {
   });
 
   it('displays error', async () => {
-    mock.onGet('http://localhost:5000/notes/').networkErrorOnce();
+    mock.onGet(ENDPOINT).networkErrorOnce();
     render(
       <TestAppProviders>
         <NotesList />
       </TestAppProviders>
     );
-    expect(await screen.findByText(/Error/i)).toBeInTheDocument();
+    await screen.findByText(/Error/i);
   });
 
   it('displays loading spinner', async () => {
-    mock.onGet('http://localhost:5000/notes/').timeout();
+    mock.onGet(ENDPOINT).timeout();
     render(
       <TestAppProviders>
         <NotesList />
       </TestAppProviders>
     );
-    expect(await screen.findByText(/Loading/i)).toBeInTheDocument();
+    await screen.findByText(/Loading/i);
   });
 
   it('displays notes', async () => {
-    mock.onGet('http://localhost:5000/notes/').reply(200, {
+    mock.onGet(ENDPOINT).reply(200, {
       allNotes,
     });
     render(
@@ -58,7 +60,7 @@ describe('NotesList', () => {
       </TestAppProviders>
     );
 
-    expect(await screen.findByText(/Dashboard todo/i)).toBeInTheDocument();
-    expect(await screen.findByText(/Add exams endpoints/i)).toBeInTheDocument();
+    await screen.findByText(/Dashboard todo/i);
+    await screen.findByText(/Add exams endpoints/i);
   });
 });
