@@ -28,7 +28,11 @@ const ExamModalHeader = ({ date, hour, title, _id }: Class) => {
       </Time>
       <header>{title}</header>
       <div className="icon-wrapper">
-        <IconButton isSmall onClick={handleDeleteClick}>
+        <IconButton
+          isSmall
+          onClick={handleDeleteClick}
+          data-cy={`delete ${title} from modal`}
+        >
           <ImCancelCircle className="icon" />
         </IconButton>
       </div>

@@ -3,7 +3,6 @@ import React from 'react';
 import { useGetAllGroups } from 'hooks/useGetAllGroups';
 
 import { StyledModal, Header, Item } from './GroupModal.styles';
-import Modal from 'react-modal';
 
 interface Props {
   isOpen: boolean;

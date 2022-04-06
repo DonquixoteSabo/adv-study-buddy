@@ -25,11 +25,15 @@ const ClassListItem = ({ _id, title, date, hour }: Class) => {
         <IconButton
           isSmall
           onClick={() => openExamModal && openExamModal(_id)}
-          data-testid={_id}
+          data-cy={`open ${title}`}
         >
           <RiPencilFill className="icon" />
         </IconButton>
-        <IconButton isSmall onClick={() => deleteNote(_id)}>
+        <IconButton
+          isSmall
+          onClick={() => deleteNote(_id)}
+          data-cy={`delete ${title}`}
+        >
           <ImCancelCircle className="icon" />
         </IconButton>
       </div>
