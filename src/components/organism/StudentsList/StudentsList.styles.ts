@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.ul`
   max-width: 540px;
   height: 75vh;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: ${({ theme }) => theme.spacing.m};
   background: #fff;
   list-style: none;

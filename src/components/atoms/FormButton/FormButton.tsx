@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const Button = styled.button`
+const FormButton = styled.button`
   display: grid;
   place-items: center;
-  padding: 7px 25px;
+  padding: 10px 35px;
   border: none;
   font-size: ${({ theme }) => theme.fontSize.xs};
   border-radius: 96.94px;
@@ -12,6 +12,7 @@ const Button = styled.button`
   font-weight: 700;
   cursor: pointer;
   transition: 0.4s ease-in-out;
+  margin: 3em auto;
 
   &:hover {
     color: white;
@@ -19,4 +20,4 @@ const Button = styled.button`
   }
 `;
 
-export default Button;
+export default FormButton;

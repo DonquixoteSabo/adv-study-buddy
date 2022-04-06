@@ -1,11 +1,10 @@
-import React from 'react';
 import styled from 'styled-components';
 
 interface IProps {
-  isSmall: boolean;
+  isSmall?: boolean;
 }
 
-const Wrapper = styled.button<IProps>`
+const IconButton = styled.button<IProps>`
   width: ${({ isSmall }) => (isSmall ? '24px' : '30px')};
   height: ${({ isSmall }) => (isSmall ? '24px' : '30px')};
   border-radius: 50%;
@@ -22,17 +21,5 @@ const Wrapper = styled.button<IProps>`
     background: ${({ theme }) => theme.colors.primaryHover};
   }
 `;
-
-interface Props {
-  isSmall?: boolean;
-  children: any;
-  onClick?: () => void;
-}
-
-const IconButton = ({ children, isSmall, onClick }: Props) => (
-  <Wrapper isSmall={isSmall || false} onClick={onClick}>
-    {children}
-  </Wrapper>
-);
 
 export default IconButton;

@@ -12,7 +12,7 @@ describe('GroupDisplay', () => {
       </TestAppProviders>
     );
 
-    expect(await screen.findByText(`Group A`)).toBeInTheDocument();
-    expect(await screen.findByText(/change group/i)).toBeInTheDocument();
+    await screen.findByText(`Group A`);
+    await screen.findByText(/change group/i);
   });
 });

@@ -1,11 +1,12 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import SearchForm from './SearchForm';
 
 import TestAppProviders from 'helpers/TestAppProviders';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
+import userEvent from '@testing-library/user-event';
 
 const mock = new MockAdapter(axios);
 
@@ -44,11 +45,11 @@ describe('SearchForm', () => {
 
     const input = screen.getByPlaceholderText('find student');
 
-    fireEvent.change(input, { target: { value: 'John' } });
+    userEvent.type(input, 'John');
 
     expect(input).toBeInTheDocument();
-    expect(screen.getByDisplayValue('John')).toBeInTheDocument();
-    expect(await screen.findByText(/Doe1/i)).toBeInTheDocument();
-    expect(await screen.findByText(/Doe2/i)).toBeInTheDocument();
+    screen.getByDisplayValue('John');
+    await screen.findByText(/Doe1/i);
+    await screen.findByText(/Doe2/i);
   });
 });
