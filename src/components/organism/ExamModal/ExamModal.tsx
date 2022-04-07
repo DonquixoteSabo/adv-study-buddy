@@ -12,16 +12,12 @@ interface Props {
   activeExam: string | null;
 }
 
-const GroupModal = ({ isOpen, closeModal, activeExam }: Props) => {
-  const { data, isLoading, error } = useClasses();
+const ExamModal = ({ isOpen, closeModal, activeExam }: Props) => {
+  const { data, error } = useClasses();
 
   if (error) {
     console.log(error);
     return <h4>Sorry, but we couldn't load data for you</h4>;
-  }
-
-  if (isLoading) {
-    return <h4>Loading...</h4>;
   }
 
   const matchingClass = data?.data?.allExams.find(
@@ -53,4 +49,4 @@ const GroupModal = ({ isOpen, closeModal, activeExam }: Props) => {
   );
 };
 
-export default GroupModal;
+export default ExamModal;

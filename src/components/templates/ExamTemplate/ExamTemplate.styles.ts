@@ -22,4 +22,5 @@ export const Row = styled.div`
   border-radius: 10px;
   padding: ${({ theme }) => theme.spacing.m};
   margin: ${({ theme }) => theme.spacing.m};
+  position: relative;
 `;

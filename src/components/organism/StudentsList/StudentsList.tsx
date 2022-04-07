@@ -1,6 +1,7 @@
 import React from 'react';
 
 import StudentsListItem from 'components/molecules/StudentsListItem/StudentsListItem';
+import Loading from 'components/molecules/Loading/Loading';
 
 import { Student, useGetStudentsByGroup } from 'hooks/useGetStudentsByGroup';
 
@@ -14,7 +15,7 @@ const StudentsList = ({ group }: Props) => {
   const { isLoading, error, data } = useGetStudentsByGroup(group);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
   if (error) {
