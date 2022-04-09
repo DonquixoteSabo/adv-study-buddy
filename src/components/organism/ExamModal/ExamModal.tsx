@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import ExamModalHeader from 'components/molecules/ExamModalHeader/ExamModalHeader';
 
 import { useClasses } from 'hooks/useClasses';
+import { ErrorContext } from 'helpers/ErrorContext';
 
 import { StyledModal, StyledButton } from './ExamModal.styles';
 
@@ -14,10 +15,10 @@ interface Props {
 
 const ExamModal = ({ isOpen, closeModal, activeExam }: Props) => {
   const { data, error } = useClasses();
+  const { addError } = useContext(ErrorContext);
 
   if (error) {
-    console.log(error);
-    return <h4>Sorry, but we couldn't load data for you</h4>;
+    addError('ExamModal error');
   }
 
   const matchingClass = data?.data?.allExams.find(

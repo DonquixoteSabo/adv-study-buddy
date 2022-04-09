@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import NotesListItem from 'components/molecules/NotesListItem/NotesListItem';
 import Loading from 'components/molecules/Loading/Loading';
 
 import { useNotes } from 'hooks/useNotes';
+import { ErrorContext } from 'helpers/ErrorContext';
 
 import { List } from './NotesList.styles';
 
 const NotesList = () => {
   const { data, error, isLoading } = useNotes();
+  const { addError } = useContext(ErrorContext);
 
   if (error) {
-    return <h4>Error...</h4>;
+    addError('NotesList error');
   }
 
   return (
