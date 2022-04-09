@@ -2,9 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { render, screen } from '@testing-library/react';
+
+import { ENDPOINT } from 'hooks/useGetStudentsByGroup';
+import TestAppProviders from 'helpers/TestAppProviders';
+import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
+
 import StudentsList from './StudentsList';
-import { ENDPOINT } from '../../../hooks/useGetStudentsByGroup';
-import TestAppProviders from '../../../helpers/TestAppProviders';
 
 const mock = new MockAdapter(axios);
 
@@ -32,10 +35,12 @@ describe('StudentsList', () => {
 
     render(
       <TestAppProviders>
-        <StudentsList group="A" />
+        <MainTemplate>
+          <StudentsList group="A" />
+        </MainTemplate>
       </TestAppProviders>
     );
-    await screen.findByText(/Sorry/i);
+    await screen.findByText(/Oops!/i);
   });
 
   it('renders Students', async () => {

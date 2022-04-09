@@ -7,8 +7,9 @@ import Modal from 'react-modal';
 import ExamTemplate from './ExamTemplate';
 
 import TestAppProviders from 'helpers/TestAppProviders';
-import ExamContextProvider from 'helpers/ExamContext';
 import { Class } from 'hooks/useClasses';
+import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
+import ExamContextProvider from 'helpers/ExamContext';
 
 const mock = new MockAdapter(axios);
 
@@ -35,7 +36,7 @@ describe('ExamTemplate', () => {
   afterEach(() => {
     mock.reset();
   });
- 
+
   it('displays an error', async () => {
     // disable error msg
     console.log = jest.fn();
@@ -44,10 +45,12 @@ describe('ExamTemplate', () => {
     mock.onGet(ENDPOINT).networkError();
     render(
       <TestAppProviders>
-        <ExamTemplate />
+        <MainTemplate>
+          <ExamTemplate />
+        </MainTemplate>
       </TestAppProviders>
     );
-    await screen.findAllByText(/Sorry/i);
+    await screen.findByText(/Oops!/i);
   });
 
   it('displays classes', async () => {
@@ -82,7 +85,7 @@ describe('ExamTemplate', () => {
     await waitFor(() => {
       expect(screen.queryByText('Evolution')).not.toBeInTheDocument();
     });
-    fireEvent.click(await screen.findByTestId('1'));
+    fireEvent.click(await screen.findByTestId('open Biology'));
     await screen.findByText('Evolution');
 
     fireEvent.click(screen.queryByText('close')!);
