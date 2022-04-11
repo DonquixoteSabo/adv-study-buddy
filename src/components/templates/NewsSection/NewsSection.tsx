@@ -1,9 +1,11 @@
 import React from 'react';
-//components
+
 import ArticleItem from 'components/molecules/ArticleItem/ArticleItem';
-import { Wrapper, Title } from './NewsSection.styles';
-//hooks
+import Loading from 'components/molecules/Loading/Loading';
+
 import { useArticles } from 'hooks/useArticles';
+
+import { Wrapper, Title } from './NewsSection.styles';
 
 // TODO
 // Button "READ more" should navigate user to subpage when he can read more (article.content)
@@ -11,12 +13,8 @@ import { useArticles } from 'hooks/useArticles';
 // handle error
 
 const NewsSection = () => {
-  const { isLoading, isError, data } = useArticles();
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
-  if (isError) {
+  const { data, isLoading, error } = useArticles();
+  if (error) {
     return (
       <h1>
         Sorry, but we were unable to load the data for you. Please consider
@@ -24,16 +22,19 @@ const NewsSection = () => {
       </h1>
     );
   }
-  const articles = data?.data.allArticles;
 
   return (
     <Wrapper>
       <header>
         <Title>University news feed</Title>
       </header>
-      {articles?.map((article) => (
-        <ArticleItem {...article} key={article.title} />
-      ))}
+      {isLoading ? (
+        <Loading />
+      ) : (
+        data?.data.allArticles.map((article) => (
+          <ArticleItem {...article} key={article.title} />
+        ))
+      )}
     </Wrapper>
   );
 };

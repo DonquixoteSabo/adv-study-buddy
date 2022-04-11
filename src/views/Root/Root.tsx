@@ -15,6 +15,7 @@ import Exams from 'views/Exams/Exams';
 
 import GroupContextProvider from 'helpers/GroupContext';
 import StudentsContextProvider from 'helpers/StudentsContext';
+import ErrorContextProvider from '../../helpers/ErrorContext';
 
 const queryClient = new QueryClient();
 
@@ -27,12 +28,14 @@ const Root = () => {
             <GlobalStyle />
             <GroupContextProvider>
               <StudentsContextProvider>
-                <Routes>
-                  <Route path="/students/:group" element={<Students />} />
-                  <Route path="/notes" element={<Notes />} />
-                  <Route path="/exams" element={<Exams />} />
-                  <Route path="/" element={<Navigate to={'/students/A'} />} />
-                </Routes>
+                <ErrorContextProvider>
+                  <Routes>
+                    <Route path="/students/:group" element={<Students />} />
+                    <Route path="/notes" element={<Notes />} />
+                    <Route path="/exams" element={<Exams />} />
+                    <Route path="/" element={<Navigate to={'/students/A'} />} />
+                  </Routes>
+                </ErrorContextProvider>
               </StudentsContextProvider>
             </GroupContextProvider>
           </ThemeProvider>

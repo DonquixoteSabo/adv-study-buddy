@@ -1,11 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import NotesList from './NotesList';
-
 import TestAppProviders from 'helpers/TestAppProviders';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
+
+import NotesList from './NotesList';
+import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 
 const mock = new MockAdapter(axios);
 
@@ -34,10 +35,12 @@ describe('NotesList', () => {
     mock.onGet(ENDPOINT).networkErrorOnce();
     render(
       <TestAppProviders>
-        <NotesList />
+        <MainTemplate>
+          <NotesList />
+        </MainTemplate>
       </TestAppProviders>
     );
-    await screen.findByText(/Error/i);
+    await screen.findByText(/Oops!/i);
   });
 
   it('displays loading spinner', async () => {

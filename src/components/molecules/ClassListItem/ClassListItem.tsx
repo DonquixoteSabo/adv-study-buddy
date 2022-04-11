@@ -26,6 +26,7 @@ const ClassListItem = ({ _id, title, date, hour }: Class) => {
           isSmall
           onClick={() => openExamModal && openExamModal(_id)}
           data-cy={`open ${title}`}
+          data-testid={`open ${title}`}
         >
           <RiPencilFill className="icon" />
         </IconButton>

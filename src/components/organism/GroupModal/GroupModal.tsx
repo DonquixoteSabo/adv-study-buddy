@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Circle } from 'components/molecules/Loading/Loading.styles';
+
 import { useGetAllGroups } from 'hooks/useGetAllGroups';
 
 import { StyledModal, Header, Item } from './GroupModal.styles';
@@ -10,7 +12,7 @@ interface Props {
 }
 
 const GroupModal = ({ isOpen, closeModal }: Props) => {
-  const { isLoading, error, data } = useGetAllGroups();
+  const { error, data, isLoading } = useGetAllGroups();
 
   return (
     <StyledModal
@@ -20,12 +22,13 @@ const GroupModal = ({ isOpen, closeModal }: Props) => {
       style={{
         overlay: { backgroundColor: ' rgba(115, 124, 142, 0.4)' },
       }}
+      isLoading={isLoading}
     >
       <Header>Select a group</Header>
       {error ? (
         <h4>Error</h4>
       ) : isLoading ? (
-        <h4>Loading...</h4>
+        <Circle />
       ) : (
         <div>
           {data?.data.groups.map((group) => (

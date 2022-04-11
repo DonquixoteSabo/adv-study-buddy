@@ -11,6 +11,7 @@ export const Wrapper = styled.aside`
   @media (min-width: 1000px) {
     display: block;
   }
+  position: relative;
 `;
 
 export const Title = styled.h1`

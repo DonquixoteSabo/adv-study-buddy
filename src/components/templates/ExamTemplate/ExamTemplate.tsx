@@ -11,6 +11,7 @@ import { Wrapper, Row } from './ExamTemplate.styles';
 const ExamTemplate = () => {
   const { isExamModalOpen, closeExamModal, activeExam } =
     useContext(ExamContext);
+
   return (
     <Wrapper>
       <ExamModal

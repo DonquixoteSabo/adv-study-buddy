@@ -2,7 +2,11 @@ import styled from 'styled-components';
 import Modal from 'react-modal';
 import { Link } from 'react-router-dom';
 
-export const StyledModal = styled(Modal)`
+interface Props {
+  isLoading: boolean;
+}
+
+export const StyledModal = styled(Modal)<Props>`
   width: 300px;
   padding: 25px 0;
   background: white;
@@ -15,6 +19,7 @@ export const StyledModal = styled(Modal)`
   left: 50%;
   transform: translate(-50%, -50%);
   color: ${({ theme }) => theme.colors.primary};
+  align-items: ${({ isLoading }) => isLoading && 'center'};
 `;
 
 export const Header = styled.header`

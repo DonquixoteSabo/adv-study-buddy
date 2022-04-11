@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import SearchBar from '../SearchBar/SearchBar';
-import Navigation from '../Navigation/Navigation';
-import NewsSection from '../NewsSection/NewsSection';
-import StudentModal from '../../organism/StudentModal/StudentModal';
-import { StudentsContext } from '../../../helpers/StudentsContext';
-import Logo from '../../atoms/Logo/Logo';
+
+import SearchBar from 'components/templates/SearchBar/SearchBar';
+import Navigation from 'components/templates/Navigation/Navigation';
+import NewsSection from 'components/templates/NewsSection/NewsSection';
+import StudentModal from 'components/organism/StudentModal/StudentModal';
+import Logo from 'components/atoms/Logo/Logo';
+import Error from 'components/molecules/Error/Error';
+
+import { StudentsContext } from 'helpers/StudentsContext';
 
 export const Wrapper = styled.div`
   display: grid;
@@ -16,9 +19,10 @@ export const Wrapper = styled.div`
 
 const MainTemplate: React.FC = ({ children }) => {
   const { isStudentModalOpen, closeStudentModal } = useContext(StudentsContext);
- 
+
   return (
     <Wrapper>
+      <Error />
       <StudentModal
         isOpen={isStudentModalOpen}
         closeModal={closeStudentModal}

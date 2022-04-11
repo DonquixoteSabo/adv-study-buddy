@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 
 import GradeList from 'components/molecules/GradeList/GradeList';
 import StudentModalHeader from 'components/molecules/StudentModalHeader/StudentModalHeader';
+import Loading from 'components/molecules/Loading/Loading';
 
 import { useGetStudentDetails } from 'hooks/UseGetStudentDetails';
 import { StudentsContext } from 'helpers/StudentsContext';
+
 import { StyledModal, Wrapper } from './StudentModal.styles';
 
 interface Props {
@@ -14,7 +16,7 @@ interface Props {
 
 const StudentModal = ({ isOpen, closeModal }: Props) => {
   const { activeStudent } = useContext(StudentsContext);
-  const { isLoading, error, data } = useGetStudentDetails(activeStudent!);
+  const { error, data, isLoading } = useGetStudentDetails(activeStudent!);
 
   return (
     <StyledModal
@@ -28,7 +30,7 @@ const StudentModal = ({ isOpen, closeModal }: Props) => {
       {error ? (
         <h4>Error</h4>
       ) : isLoading ? (
-        <h4>Loading...</h4>
+        <Loading />
       ) : data ? (
         data.data.students.map(
           ({ firstName, lastName, average, course, grades }) => (

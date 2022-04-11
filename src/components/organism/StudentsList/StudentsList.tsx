@@ -1,25 +1,27 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import StudentsListItem from 'components/molecules/StudentsListItem/StudentsListItem';
+import Loading from 'components/molecules/Loading/Loading';
 
 import { Student, useGetStudentsByGroup } from 'hooks/useGetStudentsByGroup';
 
 import { Wrapper } from './StudentsList.styles';
+import { ErrorContext } from '../../../helpers/ErrorContext';
 
 interface Props {
   group: string;
 }
 
 const StudentsList = ({ group }: Props) => {
-  const { isLoading, error, data } = useGetStudentsByGroup(group);
+  const { isLoading, data, isError } = useGetStudentsByGroup(group);
+  const { addError } = useContext(ErrorContext);
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <Loading />;
   }
 
-  if (error) {
-    console.log(error);
-    return <h1>Sorry, but we couldn't load data for you</h1>;
+  if (isError) {
+    addError('Students Error');
   }
 
   const students = data?.data.students;
