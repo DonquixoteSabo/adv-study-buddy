@@ -5,6 +5,8 @@ import {
   Routes,
 } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+
 import GlobalStyle from 'assets/styles/GlobalStyle';
 import { ThemeProvider } from 'styled-components';
 import { defaultTheme } from 'assets/styles/theme';
@@ -39,6 +41,7 @@ const Root = () => {
               </StudentsContextProvider>
             </GroupContextProvider>
           </ThemeProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
         </QueryClientProvider>
       </Router>
     </>
