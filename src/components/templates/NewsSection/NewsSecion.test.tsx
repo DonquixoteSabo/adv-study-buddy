@@ -2,7 +2,7 @@ import React from 'react';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
 import { render, screen } from '@testing-library/react';
-import { ENDPOINT, query } from 'hooks/useArticles';
+import { ENDPOINT, query } from 'hooks/articles/useArticles';
 import NewsSection from './NewsSection';
 import TestAppProviders from '../../../helpers/TestAppProviders';
 

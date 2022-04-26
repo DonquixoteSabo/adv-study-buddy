@@ -9,7 +9,7 @@ import {
 } from './ArticleItem.styles';
 import Button from 'components/atoms/Button/Button';
 //types
-import { Article } from 'hooks/useArticles';
+import { Article } from 'hooks/articles/useArticles';
 
 const ArticleItem = ({ title, image, category, introduction }: Article) => {
   return (

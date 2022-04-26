@@ -3,7 +3,7 @@ import React from 'react';
 import ArticleItem from 'components/molecules/ArticleItem/ArticleItem';
 import Loading from 'components/molecules/Loading/Loading';
 
-import { useArticles } from 'hooks/useArticles';
+import { useArticles } from 'hooks/articles/useArticles';
 
 import { Wrapper, Title } from './NewsSection.styles';
 

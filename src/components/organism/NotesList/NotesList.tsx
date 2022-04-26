@@ -3,7 +3,7 @@ import React, { useContext } from 'react';
 import NotesListItem from 'components/molecules/NotesListItem/NotesListItem';
 import Loading from 'components/molecules/Loading/Loading';
 
-import { useNotes } from 'hooks/useNotes';
+import { useNotes } from 'hooks/notes/useNotes';
 import { ErrorContext } from 'helpers/ErrorContext';
 
 import { List } from './NotesList.styles';
@@ -18,7 +18,9 @@ const NotesList = () => {
 
   return (
     <List>
-      {isLoading ? <Loading /> : (
+      {isLoading ? (
+        <Loading />
+      ) : (
         data?.data.allNotes.map(({ _id, title, content }) => (
           <NotesListItem _id={_id} title={title} content={content} key={_id} />
         ))

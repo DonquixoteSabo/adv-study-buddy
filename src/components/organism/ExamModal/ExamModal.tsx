@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 
 import ExamModalHeader from 'components/molecules/ExamModalHeader/ExamModalHeader';
 
-import { useClasses } from 'hooks/useClasses';
+import { useClasses } from 'hooks/classes/useClasses';
 import { ErrorContext } from 'helpers/ErrorContext';
 
 import { StyledModal, StyledButton } from './ExamModal.styles';

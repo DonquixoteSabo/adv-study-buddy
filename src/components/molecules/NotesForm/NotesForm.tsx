@@ -5,7 +5,7 @@ import { StyledInput } from 'components/atoms/StyledInput/StyledInput';
 import { StyledTextArea } from 'components/atoms/StyledTextArea/StyledTextArea';
 import FormButton from 'components/atoms/FormButton/FormButton';
 
-import { useAddNote } from 'hooks/useAddNote';
+import { useAddNote } from 'hooks/notes/useAddNote';
 
 import { Wrapper, StyledLabel, Error } from './NotesForm.styles';
 

@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 import ExamTemplate from './ExamTemplate';
 
 import TestAppProviders from 'helpers/TestAppProviders';
-import { Class } from 'hooks/useClasses';
+import { Class } from 'hooks/classes/useClasses';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 import ExamContextProvider from 'helpers/ExamContext';
 

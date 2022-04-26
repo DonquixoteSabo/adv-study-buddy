@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
-import { Student } from './useGetStudentsByGroup';
+import { Student } from './useStudentsByGroup';
 
 export const ENDPOINT = 'http://localhost:5000/students/search/';
 

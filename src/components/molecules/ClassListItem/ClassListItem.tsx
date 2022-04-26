@@ -4,8 +4,8 @@ import { RiPencilFill } from 'react-icons/ri';
 
 import IconButton from 'components/atoms/IconButton/IconButton';
 
-import { Class } from 'hooks/useClasses';
-import { useDeleteClass } from 'hooks/useDeleteClass';
+import { Class } from 'hooks/classes/useClasses';
+import { useDeleteClass } from 'hooks/classes/useDeleteClass';
 import { ExamContext } from 'helpers/ExamContext';
 
 import { Wrapper, Time } from './ClassListItem.styles';

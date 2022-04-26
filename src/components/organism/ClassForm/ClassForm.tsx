@@ -6,7 +6,7 @@ import { StyledInput } from 'components/atoms/StyledInput/StyledInput';
 import { StyledTextArea } from 'components/atoms/StyledTextArea/StyledTextArea';
 import FormButton from 'components/atoms/FormButton/FormButton';
 
-import { useAddClass } from 'hooks/useAddClass';
+import { useAddClass } from 'hooks/classes/useAddClass';
 
 import {
   Wrapper,

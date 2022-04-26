@@ -3,8 +3,8 @@ import { ImCancelCircle } from 'react-icons/im';
 
 import IconButton from 'components/atoms/IconButton/IconButton';
 
-import { useDeleteClass } from 'hooks/useDeleteClass';
-import { Class } from 'hooks/useClasses';
+import { useDeleteClass } from 'hooks/classes/useDeleteClass';
+import { Class } from 'hooks/classes/useClasses';
 import { ExamContext } from 'helpers/ExamContext';
 
 import { Wrapper, Time } from './ExamModalHeader.styles';

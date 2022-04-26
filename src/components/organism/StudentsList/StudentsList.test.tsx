@@ -3,7 +3,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import { render, screen } from '@testing-library/react';
 
-import { ENDPOINT } from 'hooks/useGetStudentsByGroup';
+import { ENDPOINT } from 'hooks/students/useStudentsByGroup';
 import TestAppProviders from 'helpers/TestAppProviders';
 import MainTemplate from 'components/templates/MainTemplate/MainTemplate';
 

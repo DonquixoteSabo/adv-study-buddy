@@ -10,7 +10,7 @@ interface Query {
 }
 
 export interface Student {
-  id: { $oid: string };
+  _id: string;
   firstName: string;
   lastName: string;
   attendance: number;
@@ -19,11 +19,11 @@ export interface Student {
   course: string;
 }
 
-const useGetStudentsByGroup = (group: string) => {
+const useStudentsByGroup = (group: string) => {
   return useQuery<Query>(
     ['students', group],
     async () => await axios.get(ENDPOINT + group)
   );
 };
 
-export { useGetStudentsByGroup };
+export { useStudentsByGroup };

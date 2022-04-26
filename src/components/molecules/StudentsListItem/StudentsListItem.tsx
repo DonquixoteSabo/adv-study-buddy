@@ -18,7 +18,7 @@ interface Props {
   firstName: string;
   average: number;
   attendance: number;
-  id: { $oid: string };
+  _id: string;
 }
 
 const StudentsListItem = ({
@@ -26,25 +26,25 @@ const StudentsListItem = ({
   firstName,
   average,
   attendance,
-  id,
+  _id,
 }: Props) => {
   const { openStudentModal } = useContext(StudentsContext);
 
   const handleClick = () => {
     if (openStudentModal) {
-      openStudentModal(id.$oid);
+      openStudentModal(_id);
     }
   };
 
   return (
-    <Wrapper onClick={handleClick}>
+    <Wrapper>
       <GridWrapper>
         <Grade className="grade" average={average} />
         <StyledName>
           {lastName} {firstName}
         </StyledName>
         <StyledAttendance>attendance: {attendance}%</StyledAttendance>
-        <IconButton>
+        <IconButton onClick={handleClick}>
           <RiUserSearchLine />
         </IconButton>
       </GridWrapper>

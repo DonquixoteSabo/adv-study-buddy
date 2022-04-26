@@ -3,7 +3,7 @@ import { AiOutlineDelete } from 'react-icons/ai';
 
 import IconButton from 'components/atoms/IconButton/IconButton';
 
-import { useDeleteNote } from 'hooks/useDeleteNote';
+import { useDeleteNote } from 'hooks/notes/useDeleteNote';
 
 import { Wrapper } from './NotesListItem.styles';
 

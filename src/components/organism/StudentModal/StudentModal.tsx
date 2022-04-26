@@ -4,7 +4,7 @@ import GradeList from 'components/molecules/GradeList/GradeList';
 import StudentModalHeader from 'components/molecules/StudentModalHeader/StudentModalHeader';
 import Loading from 'components/molecules/Loading/Loading';
 
-import { useGetStudentDetails } from 'hooks/UseGetStudentDetails';
+import { useStudentDetails } from 'hooks/students/UseStudentDetails';
 import { StudentsContext } from 'helpers/StudentsContext';
 
 import { StyledModal, Wrapper } from './StudentModal.styles';
@@ -16,7 +16,7 @@ interface Props {
 
 const StudentModal = ({ isOpen, closeModal }: Props) => {
   const { activeStudent } = useContext(StudentsContext);
-  const { error, data, isLoading } = useGetStudentDetails(activeStudent!);
+  const { error, data, isLoading } = useStudentDetails(activeStudent!);
 
   return (
     <StyledModal
@@ -32,18 +32,19 @@ const StudentModal = ({ isOpen, closeModal }: Props) => {
       ) : isLoading ? (
         <Loading />
       ) : data ? (
-        data.data.students.map(
-          ({ firstName, lastName, average, course, grades }) => (
-            <Wrapper key={firstName + lastName}>
-              <StudentModalHeader
-                average={average}
-                firstName={firstName}
-                lastName={lastName}
-              />
-              <GradeList grades={grades} course={course} />
-            </Wrapper>
-          )
-        )
+        <Wrapper
+          key={data.data.students.firstName + data.data.students.lastName}
+        >
+          <StudentModalHeader
+            average={data.data.students.average}
+            firstName={data.data.students.firstName}
+            lastName={data.data.students.lastName}
+          />
+          <GradeList
+            grades={data.data.students.grades}
+            course={data.data.students.course}
+          />
+        </Wrapper>
       ) : null}
     </StyledModal>
   );

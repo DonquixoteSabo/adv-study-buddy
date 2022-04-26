@@ -4,7 +4,7 @@ import ClassListItem from 'components/molecules/ClassListItem/ClassListItem';
 import ClassHeader from 'components/atoms/ClassHeader/ClassHeader';
 import Loading from 'components/molecules/Loading/Loading';
 
-import { useClasses } from 'hooks/useClasses';
+import { useClasses } from 'hooks/classes/useClasses';
 
 import { List } from './ClassList.styles';
 import { ErrorContext } from 'helpers/ErrorContext';

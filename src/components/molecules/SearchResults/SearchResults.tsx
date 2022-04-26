@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { useFindStudents } from 'hooks/useFindStudents';
+import { useFindStudents } from 'hooks/students/useFindStudents';
 import { StudentsContext } from 'helpers/StudentsContext';
 
 import {
@@ -32,9 +32,9 @@ const SearchResults = ({ results }: Props) => {
         <StyledComboboxList>
           {students.map((student) => (
             <StyledComboboxOption
-              key={student.id.$oid}
+              key={student._id}
               value={`${student.lastName}  ${student.firstName}`}
-              onClick={() => handleModalOpen(student.id.$oid)}
+              onClick={() => handleModalOpen(student._id)}
             >
               <ComboboxOptionText />
             </StyledComboboxOption>

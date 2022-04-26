@@ -6,8 +6,8 @@ import axios from 'axios';
 
 import Students from './Students';
 
-import { ENDPOINT } from 'hooks/useGetStudentsByGroup';
-import { query, ENDPOINT as DATOCMS } from 'hooks/useArticles';
+import { ENDPOINT } from 'hooks/students/useStudentsByGroup';
+import { query, ENDPOINT as DATOCMS } from 'hooks/articles/useArticles';
 import TestAppProviders from 'helpers/TestAppProviders';
 
 const mock = new MockAdapter(axios);

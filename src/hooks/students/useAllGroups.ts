@@ -9,8 +9,8 @@ interface Query {
   };
 }
 
-const useGetAllGroups = () => {
+const useAllGroups = () => {
   return useQuery<Query>(['allGroups'], async () => await axios.get(ENDPOINT));
 };
 
-export { useGetAllGroups };
+export { useAllGroups };

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Circle } from 'components/molecules/Loading/Loading.styles';
 
-import { useGetAllGroups } from 'hooks/useGetAllGroups';
+import { useAllGroups } from 'hooks/students/useAllGroups';
 
 import { StyledModal, Header, Item } from './GroupModal.styles';
 
@@ -12,7 +12,7 @@ interface Props {
 }
 
 const GroupModal = ({ isOpen, closeModal }: Props) => {
-  const { error, data, isLoading } = useGetAllGroups();
+  const { error, data, isLoading } = useAllGroups();
 
   return (
     <StyledModal

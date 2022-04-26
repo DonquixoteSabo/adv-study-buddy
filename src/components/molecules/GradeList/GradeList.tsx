@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Subject } from 'hooks/UseGetStudentDetails';
+import { Subject } from 'hooks/students/UseStudentDetails';
 import Grade from 'components/atoms/Grade/Grade';
 
 import { List } from './GradeList.styles';
@@ -17,11 +17,12 @@ const GradeList = ({ course, grades }: Props) => {
       {course}
       <h4>Average grades:</h4>
       <List>
-        {grades.map((grade) => (
-          <li key={grade.subject}>
-            <p>{grade.subject}</p> <Grade average={grade.average} />
-          </li>
-        ))}
+        {grades &&
+          grades.map((grade) => (
+            <li key={grade.subject}>
+              <p>{grade.subject}</p> <Grade average={grade.average} />
+            </li>
+          ))}
       </List>
     </div>
   );
